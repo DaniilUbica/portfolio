@@ -1,0 +1,10 @@
+[requires]
+cpp-httplib/0.18.1
+nlohmann_json/3.11.3
+
+[generators]
+CMakeDeps
+CMakeToolchain
+
+[options]
+cpp-httplib/*:with_openssl=True
