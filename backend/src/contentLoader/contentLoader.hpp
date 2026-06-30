@@ -9,7 +9,7 @@ class ContentLoader final {
 public:
     ContentLoader(const std::string& jsonConfigPath);
 
-    [[nodiscard]] nlohmann::json load(bool compat = false) const;
+    [[nodiscard]] std::string load() const;
 
 private:
 

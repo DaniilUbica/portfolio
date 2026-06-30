@@ -19,10 +19,6 @@ ContentLoader::ContentLoader(const std::string& jsonConfigPath) {
     }
 }
 
-nlohmann::json ContentLoader::load(bool compat) const {
-    if (compat) {
-        return { m_config.dump() };
-    }
-
-    return m_config;
+std::string ContentLoader::load() const {
+    return m_config.dump();
 }

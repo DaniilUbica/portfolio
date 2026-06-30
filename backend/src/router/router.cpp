@@ -9,10 +9,10 @@ using namespace router;
 Router::Router(server::Server& server, const content::ContentLoader& contentLoader) :
     m_server(server), m_contentLoader(contentLoader)
 {
-    m_server.get().registerRoute(server::Method::Get, "api/health", std::move([this](const auto& req, auto& res) {
+    m_server.get().registerRoute(server::Method::Get, "/api/health", std::move([this](const auto& req, auto& res) {
         getHealthHandler(req, res);
     }));
-    m_server.get().registerRoute(server::Method::Get, "api/content", std::move([this](const auto& req, auto& res) {
+    m_server.get().registerRoute(server::Method::Get, "/api/content", std::move([this](const auto& req, auto& res) {
         getContentHandler(req, res);
     }));
 }
