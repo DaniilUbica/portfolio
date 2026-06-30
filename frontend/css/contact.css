@@ -1,0 +1,14 @@
+/* ── CONTACT ── */
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 12px;
+  border-bottom: 1px solid #111;
+  transition: background 0.15s;
+}
+.contact-row:hover { background: var(--highlight); }
+.contact-addr { color: var(--addr); width: 90px; font-size: 11px; }
+.contact-key  { color: var(--comment); width: 80px; font-size: 11px; }
+.contact-val a { color: var(--green); text-decoration: none; }
+.contact-val a:hover { text-decoration: underline; }

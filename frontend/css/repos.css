@@ -1,0 +1,63 @@
+/* ── REPOS ── */
+.repo-block {
+  border: 1px solid var(--border);
+  margin-bottom: 2px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.repo-block:hover { border-color: var(--green-dim); }
+
+.repo-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 12px;
+  cursor: pointer;
+  background: var(--bg2);
+  user-select: none;
+}
+.repo-header:hover { background: var(--highlight); }
+
+.repo-addr   { color: var(--addr); font-size: 11px; width: 80px; }
+.repo-name   { color: var(--accent); font-weight: 700; flex: 1; }
+.repo-lang   { color: var(--comment); font-size: 11px; width: 50px; }
+.repo-stars  { color: #ffb000; font-size: 11px; width: 48px; }
+.repo-date   { color: var(--comment); font-size: 11px; width: 80px; }
+.repo-toggle { color: var(--green-dim); font-size: 11px; }
+
+.repo-detail {
+  display: none;
+  padding: 0 12px 10px 12px;
+  border-top: 1px solid var(--border);
+}
+.repo-detail.open { display: block; }
+
+.repo-detail-hex {
+  margin-top: 8px;
+  color: var(--green-dim);
+  font-size: 12px;
+}
+.repo-detail-hex .daddr { color: var(--addr); }
+.repo-detail-hex .dbytes { color: var(--comment); }
+.repo-detail-hex .dascii { color: var(--ascii); }
+
+.repo-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--green);
+  text-decoration: none;
+  border: 1px solid var(--green-dim);
+  padding: 2px 10px;
+  font-size: 11px;
+  transition: background 0.15s;
+}
+.repo-link:hover { background: var(--green-faint); }
+
+.lang-bar-wrap { display: flex; gap: 4px; margin-top: 8px; align-items: center; }
+.lang-chip {
+  font-size: 10px;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  color: var(--green-dim);
+}
+.lang-pct { color: var(--addr); }

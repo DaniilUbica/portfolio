@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daniil Ubica // C++ Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ BOOT SCREEN -->
+<div id="boot">
+  <div id="boot-lines"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ HEADER -->
+<div id="header">
+  <div class="header-inner">
+    <span class="header-title">MEM_DUMP<span class="cursor"></span></span>
+    <span class="header-addr" id="scroll-addr">0x00000000</span>
+    <div class="theme-switcher">
+      <span>THEME:</span>
+      <div class="theme-dot active" data-theme="matrix"   style="background:#00ff41" title="Matrix"></div>
+      <div class="theme-dot"        data-theme="amber"    style="background:#ffb000" title="Amber"></div>
+      <div class="theme-dot"        data-theme="phosphor" style="background:#33ff33" title="Phosphor"></div>
+      <div class="theme-dot"        data-theme="solarized" style="background:#859900" title="Solarized"></div>
+      <div class="theme-dot"        data-theme="dracula"  style="background:#50fa7b" title="Dracula"></div>
+      <div class="theme-dot"        data-theme="onedark"  style="background:#98c379" title="One Dark"></div>
+      <div class="theme-dot"        data-theme="gruvbox"  style="background:#b8bb26" title="Gruvbox"></div>
+    </div>
+    <nav>
+      <a href="#about">.about</a>
+      <a href="#skills">.skills</a>
+      <a href="#repos">.repos</a>
+      <a href="#stack">.stack</a>
+      <a href="#contact">.contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ MAIN -->
+<main id="main" style="visibility:hidden">
+
+  <!-- ── hero ── -->
+  <div class="hero">
+    <div class="hero-eyebrow">// 0x00000000 — IDENTITY</div>
+    <h1 class="hero-name" id="hero-name"></h1>
+    <div class="hero-role" id="hero-role"></div>
+    <div class="hero-meta" id="hero-meta"></div>
+  </div>
+
+  <!-- ── .about segment ── -->
+  <div id="about" class="seg-label">segment <span>[ .about ]</span> — 0x00001000..0x00001FFF — DESCRIPTION</div>
+  <div class="about-decoded">
+    <div id="about-decoded-lines"></div>
+  </div>
+
+  <!-- ── .skills segment ── -->
+  <div id="skills" class="seg-label">
+    segment <span>[ .skills ]</span> — 0x00002000..0x00002FFF — CAPABILITIES
+    <span class="skills-view-toggle">
+      <button type="button" class="svt-btn active" data-view="list">list</button>
+      <button type="button" class="svt-btn" data-view="threads">threads</button>
+    </span>
+  </div>
+
+  <div class="skills-view" id="skills-view-list">
+    <table class="skills-list-table" id="skills-list-table"></table>
+  </div>
+
+  <div class="skills-view" id="skills-view-threads" style="display:none">
+    <div class="threads-outer" id="skills-outer">
+      <svg class="threads-links" id="skills-links"></svg>
+      <div class="threads-wrap" id="skills-threads"></div>
+    </div>
+  </div>
+
+  <!-- ── .repos segment ── -->
+  <div id="repos" class="seg-label">segment <span>[ .repos ]</span> — 0x00003000..0x00003FFF — [HEAP] GITHUB OBJECTS</div>
+  <div id="repos-container">
+    <div class="loading-line" style="padding:12px;">
+      &gt; fetching github.com/daniilubica... <span class="cursor"></span>
+    </div>
+  </div>
+
+  <!-- ── .stack segment ── -->
+  <div id="stack" class="seg-label">segment <span>[ .stack ]</span> — 0x00004000..0x00004FFF — CALL STACK / EXPERIENCE</div>
+  <div id="stack-frames"></div>
+
+  <!-- ── .contact segment ── -->
+  <div id="contact" class="seg-label">segment <span>[ .contact ]</span> — 0x0000FF00..0x0000FFFF — ENDPOINTS</div>
+  <div id="contact-list"></div>
+
+</main>
+
+<footer>
+  <span>// end of memory map</span>
+  <span>sizeof(portfolio) = 0xFF00 bytes</span>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

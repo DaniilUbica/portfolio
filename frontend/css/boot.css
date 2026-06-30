@@ -1,0 +1,24 @@
+/* ── BOOT SCREEN ── */
+#boot {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10vw;
+  transition: opacity 0.5s;
+}
+#boot.hidden { opacity: 0; pointer-events: none; }
+
+.boot-line {
+  opacity: 0;
+  white-space: nowrap;
+}
+.boot-line.visible { opacity: 1; }
+
+.boot-ok   { color: var(--green); }
+.boot-warn { color: #ffb000; }
+.boot-addr { color: var(--addr); }

@@ -1,0 +1,28 @@
+/* ── ABOUT / HEADER DECODED ── */
+.about-decoded {
+  margin-top: 2px;
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 16px 20px;
+}
+.about-decoded-label {
+  color: var(--comment);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.about-decoded-line {
+  display: flex;
+  gap: 14px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--green);
+}
+.about-decoded-line .adl-addr {
+  color: var(--addr);
+  font-size: 11px;
+  flex-shrink: 0;
+  padding-top: 4px;
+  opacity: 0.7;
+}
+.about-decoded-line .adl-text { color: var(--green-dim); }

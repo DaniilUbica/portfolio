@@ -1,0 +1,32 @@
+/* ── HERO ── */
+.hero {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-eyebrow {
+  color: var(--comment);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  margin-bottom: 14px;
+}
+.hero-name {
+  color: var(--accent);
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.hero-role {
+  color: var(--green);
+  font-size: 18px;
+  margin-top: 8px;
+}
+.hero-meta {
+  color: var(--comment);
+  font-size: 12px;
+  margin-top: 16px;
+  display: flex;
+  gap: 18px;
+}
+.hero-meta a { color: var(--green-dim); text-decoration: none; }
+.hero-meta a:hover { color: var(--green); text-decoration: underline; }

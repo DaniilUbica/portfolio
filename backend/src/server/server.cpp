@@ -10,15 +10,27 @@ Server::Server(int port) :
     m_port(port),
     m_server(std::make_unique<httplib::Server>())
 {
-    m_server->set_exception_handler([](const httplib::Request&, httplib::Response& res, std::exception_ptr ep) {
+    m_server->set_exception_handler([](const httplib::Request& req, httplib::Response& res, std::exception_ptr ep) {
         try {
             std::rethrow_exception(ep);
         }
         catch (const std::exception& e) {
             std::cerr << "[ERROR] Unhandled exception in handler: " << e.what() << "\n";
-            res.status = 500;
-            res.set_content(std::string(R"({"error":")") + e.what() + "\"}", "application/json");
+            if (req.path.starts_with("/api/")) {
+                res.status = 500;
+                res.set_content(std::string(R"({"error":")") + e.what() + "\"}", "application/json");
+            }
+            else {
+                res.set_redirect("/error.html?code=500");
+            }
         }
+    });
+
+    m_server->set_error_handler([](const httplib::Request& req, httplib::Response& res) {
+        if (req.path.starts_with("/api/")) {
+            return;
+        }
+        res.set_redirect("/error.html?code=" + std::to_string(res.status));
     });
 
     setupStaticFiles();

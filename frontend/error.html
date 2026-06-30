@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Error // Daniil Ubica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/error-main.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ HEADER -->
+<div id="header">
+  <div class="header-inner">
+    <span class="header-title">MEM_DUMP<span class="cursor"></span></span>
+    <span class="header-addr" id="error-addr">0xDEADBEEF</span>
+    <div class="theme-switcher">
+      <span>THEME:</span>
+      <div class="theme-dot active" data-theme="matrix"   style="background:#00ff41" title="Matrix"></div>
+      <div class="theme-dot"        data-theme="amber"    style="background:#ffb000" title="Amber"></div>
+      <div class="theme-dot"        data-theme="phosphor" style="background:#33ff33" title="Phosphor"></div>
+      <div class="theme-dot"        data-theme="solarized" style="background:#859900" title="Solarized"></div>
+      <div class="theme-dot"        data-theme="dracula"  style="background:#50fa7b" title="Dracula"></div>
+      <div class="theme-dot"        data-theme="onedark"  style="background:#98c379" title="One Dark"></div>
+      <div class="theme-dot"        data-theme="gruvbox"  style="background:#b8bb26" title="Gruvbox"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ MAIN -->
+<main class="error-wrap">
+  <div class="error-trap" id="error-trap">SIGNAL TRAPPED</div>
+  <div class="error-code" id="error-code">000</div>
+  <div class="error-title" id="error-title"></div>
+  <div class="error-desc" id="error-desc"></div>
+
+  <div class="error-registers">
+    <div class="error-registers-label">// register dump</div>
+    <div class="error-registers-grid" id="error-registers"></div>
+  </div>
+
+  <div class="error-backtrace">
+    <div class="error-backtrace-label">&gt; backtrace</div>
+    <div id="error-frames"></div>
+  </div>
+
+  <div class="error-actions">
+    <a class="error-btn primary" href="index.html">&gt; return to index.html</a>
+    <button class="error-btn" id="error-retry" type="button">&gt; retry request</button>
+  </div>
+</main>
+
+<footer>
+  <span>// end of memory map</span>
+  <span id="error-footer-size">sizeof(fault) = 0x00 bytes</span>
+</footer>
+
+<script type="module" src="js/error.js"></script>
+</body>
+</html>
