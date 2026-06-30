@@ -5,20 +5,29 @@
 
 using namespace content;
 
-ContentLoader::ContentLoader(const std::string& jsonConfigPath) {
-    std::ifstream file(jsonConfigPath);
-    if (!file.is_open()) {
-        throw std::runtime_error("ContentBuilder: cannot open config: " + jsonConfigPath);
-    }
-
-    try {
-        m_config = nlohmann::json::parse(file);
-    }
-    catch (std::runtime_error& err) {
-        throw std::runtime_error("ContentBuilder: cannot parse config: " + jsonConfigPath);
-    }
+ContentLoader::ContentLoader(const std::string& jsonContentPath) : m_contentPath(jsonContentPath) {
+    loadContentFromFile();
 }
 
 std::string ContentLoader::load() const {
-    return m_config.dump();
+    return m_content.dump();
+}
+
+void ContentLoader::reloadContent() {
+    m_content.clear();
+    loadContentFromFile();
+}
+
+void ContentLoader::loadContentFromFile() {
+    std::ifstream file(m_contentPath);
+    if (!file.is_open()) {
+        throw std::runtime_error("ContentBuilder: cannot open config: " + m_contentPath);
+    }
+
+    try {
+        m_content = nlohmann::json::parse(file);
+    }
+    catch (std::runtime_error& err) {
+        throw std::runtime_error("ContentBuilder: cannot parse config: " + m_contentPath);
+    }
 }

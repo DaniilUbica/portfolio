@@ -7,13 +7,17 @@ namespace content {
 
 class ContentLoader final {
 public:
-    ContentLoader(const std::string& jsonConfigPath);
+    ContentLoader(const std::string& jsonContentPath);
 
     [[nodiscard]] std::string load() const;
 
-private:
+    void reloadContent();
 
-    nlohmann::json m_config;
+private:
+    void loadContentFromFile();
+
+    std::string m_contentPath;
+    nlohmann::json m_content;
 };
 
 }
