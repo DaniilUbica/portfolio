@@ -13,7 +13,7 @@ namespace server {
 
 enum class Method {
     Get = 0,
-    Post
+    Post,
 };
 
 using route_handler_t = std::function<void(const httplib::Request&, httplib::Response& res)>;
