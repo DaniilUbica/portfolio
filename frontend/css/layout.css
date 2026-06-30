@@ -1,0 +1,31 @@
+/* ── MAIN LAYOUT ── */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── SECTION LABEL ── */
+.seg-label {
+  margin: 72px 0 20px;
+  color: var(--comment);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  border-left: 2px solid var(--green-faint);
+  padding-left: 12px;
+}
+.seg-label span { color: var(--accent); font-weight: 700; }
+
+.loading-line { color: var(--comment); font-style: italic; }
+
+/* ── FOOTER ── */
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px 24px 32px;
+  border-top: 1px solid var(--border);
+  color: var(--comment);
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,11 @@
+/* ── STACK / EXPERIENCE ── */
+.stack-frame {
+  border-left: 2px solid var(--green-faint);
+  padding: 6px 0 6px 16px;
+  margin-bottom: 2px;
+}
+.stack-frame:hover { border-left-color: var(--green); }
+.sf-addr   { color: var(--addr); font-size: 11px; }
+.sf-func   { color: var(--accent); font-weight: 700; }
+.sf-file   { color: var(--comment); font-size: 11px; }
+.sf-args   { color: var(--green-dim); font-size: 12px; margin-top: 2px; }
