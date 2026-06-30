@@ -1,0 +1,126 @@
+{
+    "name": "Daniil Volkov",
+    "job": "Software Developer",
+    "location": "Moscow, Russia",
+    "socials": [
+        {
+            "name": "github",
+            "value": "github.com/daniilubica",
+            "ref": "https://github.com/daniilubica"
+        },
+        {
+            "name": "email",
+            "value": "acveloff@gmail.com",
+            "ref": "mailto:acveloff@gmail.com"
+        },
+        {
+            "name": "telegram",
+            "value": "@daniil_ubica",
+            "ref": "https://t.me/daniil_ubica"
+        }
+    ],
+    "about": [
+        "Systems programmer focused on performance-critical applications.",
+        "Passionate about low-level optimization, memory management,",
+        "and building reliable cross-platform software in C++."
+    ],
+    "experience": [
+        {
+            "func":  "C++ Developer",
+            "file":  "reverselab.cpp",
+            "args":  "system security, siem, backend",
+            "date":  "2026 — present"
+        },
+        {
+            "func":  "Junior C++ Developer",
+            "file":  "TrueConf.cpp",
+            "args":  "embedded systems, Qt GUI applications",
+            "date":  "2023 — 2026"
+        },
+        {
+            "func":  "CS Student",
+            "file":  "msut_stankin.cpp",
+            "args":  "algorithms, data structures, OS internals",
+            "date":  "2021 — 2025"
+        }
+    ],
+    "skills": [
+        {
+            "id": "dev",
+            "name": "development",
+            "state": "RUNNING",
+            "joins": [],
+            "frames": [
+              { "name": "Systems programming", "lvl": "MAIN" },
+              { "name": "Performance-critical apps", "lvl": "" },
+              { "name": "Cross-platform software", "lvl": "" }
+            ]
+          },
+          {
+            "id": "cpp",
+            "name": "cpp",
+            "state": "RUNNING",
+            "joins": ["dev"],
+            "frames": [
+              { "name": "C++17 / C++20", "lvl": "MAIN" },
+              { "name": "STL / templates", "lvl": "" },
+              { "name": "RAII / smart pointers", "lvl": "" },
+              { "name": "Multithreading", "lvl": "" },
+              { "name": "CMake", "lvl": "" }
+            ]
+          },
+          {
+            "id": "qt",
+            "name": "qt",
+            "state": "RUNNING",
+            "joins": ["cpp"],
+            "frames": [
+              { "name": "QtWidgets", "lvl": "MAIN" },
+              { "name": "Signals / slots", "lvl": "" },
+              { "name": "QML", "lvl": "" }
+            ]
+          },
+          {
+            "id": "git",
+            "name": "git",
+            "state": "RUNNING",
+            "joins": ["cpp"],
+            "frames": [
+              { "name": "Git / GitHub", "lvl": "MAIN" },
+              { "name": "Branching workflows", "lvl": "" },
+              { "name": "Code review", "lvl": "" }
+            ]
+          },
+          {
+            "id": "algo",
+            "name": "algorithms",
+            "state": "RUNNING",
+            "joins": ["cpp"],
+            "frames": [
+              { "name": "Algorithms / DS", "lvl": "MAIN" },
+              { "name": "Complexity analysis", "lvl": "" }
+            ]
+          },
+          {
+            "id": "python",
+            "name": "python",
+            "state": "IDLE",
+            "joins": ["dev"],
+            "frames": [
+              { "name": "Python", "lvl": "MAIN" },
+              { "name": "Scripting / tooling", "lvl": "" }
+            ]
+          },
+          {
+            "id": "ci",
+            "name": "CI/CD",
+            "state": "IDLE",
+            "joins": ["dev"],
+            "frames": [
+              { "name": "conan", "lvl": "MAIN" },
+              { "name": "GitLab/Github CI", "lvl": "" },
+              { "name": "Docker", "lvl": "" }
+            ]
+          }
+    ]
+}

@@ -10,13 +10,15 @@ find_package(nlohmann_json REQUIRED)
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/server/server.cpp
     ${PROJECT_SOURCE_DIR}/src/config/config.cpp
+    ${PROJECT_SOURCE_DIR}/src/contentLoader/contentLoader.cpp
 )
 
 set(INCLUDES
     ${PROJECT_SOURCE_DIR}/src/server/server.hpp
-    
+
     ${PROJECT_SOURCE_DIR}/src/config/config.hpp
     ${PROJECT_SOURCE_DIR}/src/config/config.ipp
+    ${PROJECT_SOURCE_DIR}/src/contentLoader/contentLoader.hpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} main.cpp
