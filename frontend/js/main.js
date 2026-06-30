@@ -1,5 +1,4 @@
 import { loadPortfolioData } from './api.js';
-import { CONFIG } from './api.js';
 import { renderHero } from './hero.js';
 import { renderAbout } from './about.js';
 import { renderSkillsList, renderSkillThreads, initSkillsViewToggle } from './skills.js';
@@ -23,7 +22,7 @@ async function init() {
     await loadPortfolioData();
   } catch (e) {
     console.error('[api] failed to load portfolio data:', e.message);
-    window.location.href = '/error.html?code=503';
+    window.location.href = '/error?code=503';
     return;
   }
   renderHero();

@@ -6,7 +6,8 @@
 using namespace server;
 
 
-Server::Server(int port) :
+Server::Server(const std::string& frontendDirPath, int port) :
+    m_frontendDirPath(frontendDirPath),
     m_port(port),
     m_server(std::make_unique<httplib::Server>())
 {
@@ -21,16 +22,13 @@ Server::Server(int port) :
                 res.set_content(std::string(R"({"error":")") + e.what() + "\"}", "application/json");
             }
             else {
-                res.set_redirect("/error.html?code=500");
+                res.set_redirect("/error?code=500");
             }
         }
     });
 
     m_server->set_error_handler([](const httplib::Request& req, httplib::Response& res) {
-        if (req.path.starts_with("/api/")) {
-            return;
-        }
-        res.set_redirect("/error.html?code=" + std::to_string(res.status));
+        res.set_redirect("/error?code=" + std::to_string(res.status));
     });
 
     setupStaticFiles();
@@ -55,5 +53,5 @@ void Server::registerRoute(Method method, const std::string& route, route_handle
 }
 
 void Server::setupStaticFiles() {
-    m_server->set_mount_point("/", "./frontend"); // todo: add this to cmake
+    m_server->set_mount_point("/", m_frontendDirPath);
 }

@@ -8,11 +8,11 @@
 int main() {
     try {
         auto& cfg = config::Config::instance();
-        server::Server server(cfg.readValue(config::c_serverPort));
+        server::Server server(cfg.readValue(config::c_frontendDirPath), cfg.readValue(config::c_serverPort));
 
         content::ContentLoader loader(cfg.readValue(config::c_staticContentPath));
 
-        const router::Router router(server, loader);
+        const router::Router router(cfg.readValue(config::c_frontendDirPath), server, loader);
 
         server.run();
     }

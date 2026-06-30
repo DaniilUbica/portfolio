@@ -20,7 +20,7 @@ using route_handler_t = std::function<void(const httplib::Request&, httplib::Res
 
 class Server final {
 public:
-    Server(int port);
+    Server(const std::string& frontendDirPath, int port);
     ~Server();
 
     void run();
@@ -30,6 +30,7 @@ private:
     void setupStaticFiles();
 
     std::unique_ptr<httplib::Server> m_server;
+    std::string m_frontendDirPath;
     int m_port = 0;
 };
 

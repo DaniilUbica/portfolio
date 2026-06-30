@@ -16,7 +16,8 @@ namespace {
 
 inline static const ConfigKey c_githubToken       { "githubToken", std::string("") };
 inline static const ConfigKey c_serverPort        { "serverPort", 6767 };
-inline static const ConfigKey c_staticContentPath { "staticContentPath", std::string("/Users/daniilubica/Developer/projects/c++/portfolio/staticConfig.json") };
+inline static const ConfigKey c_staticContentPath { "staticContentPath", std::string("./staticConfig.json") };
+inline static const ConfigKey c_frontendDirPath   { "frontendDirPath", std::string("./frontend") };
 
 class Config final {
 public:
