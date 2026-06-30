@@ -14,8 +14,9 @@ namespace {
     };
 }
 
-inline static const ConfigKey c_githubToken { "githubToken", "" };
-inline static const ConfigKey c_serverPort  { "serverPort", 6767 };
+inline static const ConfigKey c_githubToken       { "githubToken", std::string("") };
+inline static const ConfigKey c_serverPort        { "serverPort", 6767 };
+inline static const ConfigKey c_staticContentPath { "staticContentPath", std::string("/Users/daniilubica/Developer/projects/c++/portfolio/staticConfig.json") };
 
 class Config final {
 public:

@@ -2,16 +2,24 @@
 
 #include "src/config/config.hpp"
 #include "src/server/server.hpp"
+#include "src/contentLoader/contentLoader.hpp"
+#include "src/router/router.hpp"
 
 int main() {
-    int port = 0;
     try {
-        port = config::Config::instance().readValue(config::c_serverPort);
+        auto& cfg = config::Config::instance();
+        server::Server server(cfg.readValue(config::c_serverPort));
+
+        const content::ContentLoader loader(cfg.readValue(config::c_staticContentPath));
+
+        const router::Router router(server, loader);
+
+        server.run();
     }
-    catch (std::runtime_error& err) {
-        std::cerr << "Can't read value from config: " << err.what();
+    catch (const std::exception& err) {
+        std::cerr << "Fatal error: " << err.what() << "\n";
+        return 1;
     }
 
-    server::Server server(config::Config::instance().readValue(config::c_serverPort));
-    server.run();
+    return 0;
 }

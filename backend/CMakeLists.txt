@@ -10,13 +10,16 @@ find_package(nlohmann_json REQUIRED)
 set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/server/server.cpp
     ${PROJECT_SOURCE_DIR}/src/config/config.cpp
+    ${PROJECT_SOURCE_DIR}/src/contentLoader/contentLoader.cpp
+    ${PROJECT_SOURCE_DIR}/src/router/router.cpp
 )
 
 set(INCLUDES
     ${PROJECT_SOURCE_DIR}/src/server/server.hpp
-    
     ${PROJECT_SOURCE_DIR}/src/config/config.hpp
     ${PROJECT_SOURCE_DIR}/src/config/config.ipp
+    ${PROJECT_SOURCE_DIR}/src/contentLoader/contentLoader.hpp
+    ${PROJECT_SOURCE_DIR}/src/router/router.hpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} main.cpp
@@ -24,7 +27,7 @@ add_executable(${CMAKE_PROJECT_NAME} main.cpp
     ${INCLUDES}
 )
 
-target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE backend/include)
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     httplib::httplib
