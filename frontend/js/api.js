@@ -1,21 +1,28 @@
-import { CONFIG } from './config.js';
+// ════════════════════════════════════════════════════════════
+//  API — single source of truth for portfolio data.
+//  Fetches /api/content, maps backend fields to frontend shape,
+//  and exposes CONFIG so every module gets the same object reference.
+// ════════════════════════════════════════════════════════════
 
-// ════════════════════════════════════════════════════════════
-//  API — pulls portfolio data from the backend's REST endpoint and
-//  merges it into CONFIG in place, so every module that already
-//  imported { CONFIG } sees the update through the same object
-//  reference (no need to re-import or pass data around).
-// ════════════════════════════════════════════════════════════
-const PORTFOLIO_API_URL = '/api/portfolio';
+export const CONFIG = {};
+
+function mapData(data) {
+  const socials = data.socials ?? [];
+  const github  = (socials.find(s => s.name === 'github')?.value ?? '').replace('github.com/', '');
+
+  CONFIG.name         = data.name       ?? '';
+  CONFIG.role         = data.job        ?? '';
+  CONFIG.location     = data.location   ?? '';
+  CONFIG.github       = github;
+  CONFIG.bio          = data.about      ?? [];
+  CONFIG.skillThreads = data.skills     ?? [];
+  CONFIG.experience   = data.experience ?? [];
+  CONFIG.contact      = socials.map(s => ({ key: s.name, val: s.value, href: s.ref }));
+  CONFIG.repos        = [];             // populated later by /api/repos
+}
 
 export async function loadPortfolioData() {
-  try {
-    const res = await fetch(PORTFOLIO_API_URL);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    Object.assign(CONFIG, data);
-  } catch (e) {
-    // backend unreachable — fall back to the bundled CONFIG defaults
-    console.warn('[api] failed to load portfolio data, using defaults:', e.message);
-  }
+  const res = await fetch('/api/content');
+  if (!res.ok) throw new Error(`/api/content returned HTTP ${res.status}`);
+  mapData(await res.json());
 }

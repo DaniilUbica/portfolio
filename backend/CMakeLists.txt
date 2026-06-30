@@ -34,10 +34,10 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     nlohmann_json::nlohmann_json
 )
 
-# add_custom_target(copy_frontend ALL
-#     COMMAND ${CMAKE_COMMAND} -E copy_directory
-#         ${CMAKE_SOURCE_DIR}/frontend
-#         ${CMAKE_BINARY_DIR}/frontend
-#     COMMENT "Copying frontend to build directory"
-# )
-# add_dependencies(${CMAKE_PROJECT_NAME} copy_frontend)
+add_custom_target(copy_frontend ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/../frontend
+        ${CMAKE_BINARY_DIR}/frontend
+    COMMENT "Copying frontend to build directory"
+)
+add_dependencies(${CMAKE_PROJECT_NAME} copy_frontend)

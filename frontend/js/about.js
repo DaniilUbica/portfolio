@@ -1,4 +1,4 @@
-import { CONFIG } from './config.js';
+import { CONFIG } from './api.js';
 import { toHex } from './utils.js';
 
 // ════════════════════════════════════════════════════════════

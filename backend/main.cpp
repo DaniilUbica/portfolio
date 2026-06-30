@@ -10,7 +10,7 @@ int main() {
         auto& cfg = config::Config::instance();
         server::Server server(cfg.readValue(config::c_serverPort));
 
-        const content::ContentLoader loader(cfg.readValue(config::c_staticContentPath));
+        content::ContentLoader loader(cfg.readValue(config::c_staticContentPath));
 
         const router::Router router(server, loader);
 
