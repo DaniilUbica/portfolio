@@ -11,7 +11,12 @@ ContentLoader::ContentLoader(const std::string& jsonConfigPath) {
         throw std::runtime_error("ContentBuilder: cannot open config: " + jsonConfigPath);
     }
 
-    m_config = nlohmann::json::parse(file);
+    try {
+        m_config = nlohmann::json::parse(file);
+    }
+    catch (std::runtime_error& err) {
+        throw std::runtime_error("ContentBuilder: cannot parse config: " + jsonConfigPath);
+    }
 }
 
 nlohmann::json ContentLoader::load(bool compat) const {

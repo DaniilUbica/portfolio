@@ -1,7 +1,8 @@
 #include <iostream>
 
 #include "src/config/config.hpp"
-#include "src/server/server.hpp"
+#include "src/contentLoader/contentLoader.hpp"
+#include "src/router/router.hpp"
 
 int main() {
     int port = 0;
