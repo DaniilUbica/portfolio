@@ -1,0 +1,42 @@
+@media (max-width: 640px) {
+
+  /* ── LAYOUT ── */
+  main    { padding: 0 12px 60px; }
+  footer  { padding: 12px 12px 24px; flex-direction: column; gap: 4px; }
+
+  /* ── HERO ── */
+  .hero-name  { font-size: 28px; }
+  .hero-role  { font-size: 15px; }
+  .hero-meta  { flex-direction: column; gap: 4px; }
+
+  /* ── ABOUT ── */
+  .about-decoded { padding: 12px; }
+  .about-decoded-line { font-size: 13px; gap: 8px; }
+  .adl-addr { display: none; }
+
+  /* ── SKILLS: LIST ── */
+  .sl-addr  { display: none; }
+  .sl-name  { width: 110px; font-size: 12px; }
+  .sl-items { font-size: 11px; }
+
+  /* ── REPOS ── */
+  .repo-addr  { display: none; }
+  .repo-header { gap: 8px; padding: 8px; }
+  .repo-name  { font-size: 12px; }
+  .repo-lang  { font-size: 10px; width: auto; }
+  .repo-stars { font-size: 10px; width: auto; }
+
+  /* ── STACK ── */
+  .sf-func { font-size: 12px; word-break: break-all; }
+  .sf-file { font-size: 10px; word-break: break-all; }
+
+  /* ── CONTACT ── */
+  .contact-addr { display: none; }
+  .contact-key  { width: 70px; }
+  .contact-row  { padding: 5px 8px; }
+}
+
+@media (max-width: 380px) {
+  .hero-name { font-size: 22px; }
+  .contact-key { display: none; }
+}

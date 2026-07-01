@@ -16,17 +16,18 @@ export function renderSkillsList() {
   }).join('');
 }
 
+function switchSkillsView(view) {
+  document.querySelectorAll('.svt-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.view === view);
+  });
+  document.getElementById('skills-view-list').style.display    = view === 'list' ? '' : 'none';
+  document.getElementById('skills-view-threads').style.display = view === 'threads' ? '' : 'none';
+  if (view === 'threads') layoutThreadsTree();
+}
+
 export function initSkillsViewToggle() {
-  const buttons = document.querySelectorAll('.svt-btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const view = btn.dataset.view;
-      document.getElementById('skills-view-list').style.display    = view === 'list' ? '' : 'none';
-      document.getElementById('skills-view-threads').style.display = view === 'threads' ? '' : 'none';
-      if (view === 'threads') layoutThreadsTree();
-    });
+  document.querySelectorAll('.svt-btn').forEach(btn => {
+    btn.addEventListener('click', () => switchSkillsView(btn.dataset.view));
   });
 }
 
@@ -88,6 +89,12 @@ export function layoutThreadsTree() {
   const blockW   = 250;
   const colGapX  = 24;
   const rowGapY  = 70;
+
+  const availW    = document.querySelector('main')?.clientWidth ?? outer.clientWidth;
+  const canFitTwo = availW >= blockW * 3 + colGapX * 5;
+  const threadsBtn = document.querySelector('.svt-btn[data-view="threads"]');
+  if (threadsBtn) threadsBtn.style.display = canFitTwo ? '' : 'none';
+  if (!canFitTwo) { switchSkillsView('list'); return; }
   const sidePad  = 10;
   const wrapWidth = Math.max(outer.clientWidth - sidePad * 2, blockW);
 
@@ -175,10 +182,9 @@ function drawThreadLinks() {
       const bcx = rb.left + rb.width / 2 - outerRect.left;
       const bcy = rb.top  + rb.height / 2 - outerRect.top;
 
-      const p1 = edgePoint(ra, acx, acy, bcx, bcy);
-      const p2 = edgePoint(rb, bcx, bcy, acx, acy);
+      const p1   = edgePoint(ra, acx, acy, bcx, bcy);
+      const p2   = edgePoint(rb, bcx, bcy, acx, acy);
       const midX = (p1.x + p2.x) / 2;
-      const midY = (p1.y + p2.y) / 2;
       paths += `<path d="M ${p1.x} ${p1.y} C ${midX} ${p1.y}, ${midX} ${p2.y}, ${p2.x} ${p2.y}" />`;
     });
   });

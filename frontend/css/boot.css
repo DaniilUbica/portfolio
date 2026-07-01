@@ -16,6 +16,17 @@
 .boot-line {
   opacity: 0;
   white-space: nowrap;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  #boot { padding: 6vw; }
+  .boot-line {
+    white-space: normal;
+    word-break: break-word;
+    font-size: 11px;
+    line-height: 1.8;
+  }
 }
 .boot-line.visible { opacity: 1; }
 

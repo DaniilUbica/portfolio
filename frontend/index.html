@@ -18,8 +18,17 @@
 <!-- ═══════════════════════════════════════════════════ HEADER -->
 <div id="header">
   <div class="header-inner">
-    <span class="header-title">MEM_DUMP<span class="cursor"></span></span>
-    <span class="header-addr" id="scroll-addr">0x00000000</span>
+    <div class="header-brand">
+      <span class="header-title">MEM_DUMP<span class="cursor"></span></span>
+      <span class="header-addr" id="scroll-addr">0x00000000</span>
+    </div>
+    <nav>
+      <a href="#about">.about</a>
+      <a href="#stack">.stack</a>
+      <a href="#repos">.repos</a>
+      <a href="#experience">.experience</a>
+      <a href="#contact">.contact</a>
+    </nav>
     <div class="theme-switcher">
       <span>THEME:</span>
       <div class="theme-dot active" data-theme="matrix"   style="background:#00ff41" title="Matrix"></div>
@@ -30,13 +39,6 @@
       <div class="theme-dot"        data-theme="onedark"  style="background:#98c379" title="One Dark"></div>
       <div class="theme-dot"        data-theme="gruvbox"  style="background:#b8bb26" title="Gruvbox"></div>
     </div>
-    <nav>
-      <a href="#about">.about</a>
-      <a href="#skills">.skills</a>
-      <a href="#repos">.repos</a>
-      <a href="#stack">.stack</a>
-      <a href="#contact">.contact</a>
-    </nav>
   </div>
 </div>
 
@@ -57,9 +59,9 @@
     <div id="about-decoded-lines"></div>
   </div>
 
-  <!-- ── .skills segment ── -->
-  <div id="skills" class="seg-label">
-    segment <span>[ .skills ]</span> — 0x00002000..0x00002FFF — CAPABILITIES
+  <!-- ── .stack segment ── -->
+  <div id="stack" class="seg-label">
+    segment <span>[ .stack ]</span> — 0x00002000..0x00002FFF — CAPABILITIES
     <span class="skills-view-toggle">
       <button type="button" class="svt-btn active" data-view="list">list</button>
       <button type="button" class="svt-btn" data-view="threads">threads</button>
@@ -85,8 +87,8 @@
     </div>
   </div>
 
-  <!-- ── .stack segment ── -->
-  <div id="stack" class="seg-label">segment <span>[ .stack ]</span> — 0x00004000..0x00004FFF — CALL STACK / EXPERIENCE</div>
+  <!-- ── .experience segment ── -->
+  <div id="experience" class="seg-label">segment <span>[ .experience ]</span> — 0x00004000..0x00004FFF — CALL STACK / EXPERIENCE</div>
   <div id="stack-frames"></div>
 
   <!-- ── .contact segment ── -->
