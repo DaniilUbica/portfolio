@@ -1,9 +1,6 @@
 import { CONFIG } from './api.js';
 import { layoutThreadsTree } from './skills.js';
 
-// ════════════════════════════════════════════════════════════
-//  BOOT SEQUENCE
-// ════════════════════════════════════════════════════════════
 function buildBootLines() {
   return [
     { text: 'BIOS v2.04 — Memory self-test... OK',                  cls: 'boot-ok',   delay: 0   },
@@ -12,11 +9,11 @@ function buildBootLines() {
     { text: 'Resolving debug symbols... OK',                         cls: 'boot-ok',   delay: 900 },
     { text: 'Segment .header  → 0x00000000  [R--]',                 cls: 'boot-addr',  delay: 1100},
     { text: 'Segment .about   → 0x00001000  [R--]',                 cls: 'boot-addr',  delay: 1250},
-    { text: 'Segment .skills  → 0x00002000  [R--]',                 cls: 'boot-addr',  delay: 1400},
-    { text: 'Segment .repos   → 0x00003000  [RW-] HEAP',            cls: 'boot-warn',  delay: 1550},
-    { text: 'Segment .stack   → 0x00004000  [R--]',                 cls: 'boot-addr',  delay: 1700},
+    { text: 'Segment .stack      → 0x00002000  [R--]',               cls: 'boot-addr',  delay: 1400},
+    { text: 'Segment .repos      → 0x00003000  [RW-] HEAP',         cls: 'boot-warn',  delay: 1550},
+    { text: 'Segment .experience → 0x00004000  [R--]',              cls: 'boot-addr',  delay: 1700},
     { text: 'Segment .contact → 0x0000FF00  [R--]',                 cls: 'boot-addr',  delay: 1850},
-    { text: `Loading objects for github.com/${CONFIG.github}...`,  cls: 'boot-warn',  delay: 2050},
+    { text: `Loading objects for github.com/${CONFIG.github}...`,   cls: 'boot-warn',  delay: 2050},
     { text: 'Memory map ready. Starting portfolio...',               cls: 'boot-ok',   delay: 2350},
   ];
 }

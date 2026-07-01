@@ -22,7 +22,6 @@
 .repo-name   { color: var(--accent); font-weight: 700; flex: 1; }
 .repo-lang   { color: var(--comment); font-size: 11px; width: 50px; }
 .repo-stars  { color: #ffb000; font-size: 11px; width: 48px; }
-.repo-date   { color: var(--comment); font-size: 11px; width: 80px; }
 .repo-toggle { color: var(--green-dim); font-size: 11px; }
 
 .repo-detail {
@@ -53,11 +52,23 @@
 }
 .repo-link:hover { background: var(--green-faint); }
 
-.lang-bar-wrap { display: flex; gap: 4px; margin-top: 8px; align-items: center; }
+.lang-bar-wrap   { display: flex; gap: 4px; margin-top: 8px; align-items: center; flex-wrap: wrap; }
+.topic-bar-wrap  { display: flex; gap: 4px; margin-top: 6px; align-items: center; flex-wrap: wrap; }
+
 .lang-chip {
   font-size: 10px;
   padding: 1px 6px;
   border: 1px solid var(--border);
   color: var(--green-dim);
 }
+
+.topic-chip {
+  font-size: 10px;
+  padding: 1px 8px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  opacity: 0.8;
+}
+.topic-chip::before { content: '#'; opacity: 0.6; }
+
 .lang-pct { color: var(--addr); }

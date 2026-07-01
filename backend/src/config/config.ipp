@@ -3,6 +3,8 @@
 #include <sstream>
 #include <cstdlib>
 #include <stdexcept>
+#include <optional>
+#include <algorithm>
 
 namespace {
 

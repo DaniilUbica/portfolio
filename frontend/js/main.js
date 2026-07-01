@@ -1,4 +1,4 @@
-import { loadPortfolioData } from './api.js';
+import { loadPortfolioData, loadRepos } from './api.js';
 import { renderHero } from './hero.js';
 import { renderAbout } from './about.js';
 import { renderSkillsList, renderSkillThreads, initSkillsViewToggle } from './skills.js';
@@ -9,13 +9,8 @@ import { initScrollAddr } from './scroll.js';
 import { initThemeSwitcher } from './themes.js';
 import { runBoot } from './boot.js';
 
-// repo-header uses an inline onclick="toggleRepo(i)" in the markup,
-// so the handler needs to be reachable on window
 window.toggleRepo = toggleRepo;
 
-// ════════════════════════════════════════════════════════════
-//  INIT
-// ════════════════════════════════════════════════════════════
 async function init() {
   initThemeSwitcher();
   try {
@@ -32,6 +27,11 @@ async function init() {
   initSkillsViewToggle();
   renderStack();
   renderContact();
+  try {
+    await loadRepos();
+  } catch (e) {
+    console.error('[api] failed to load repos:', e.message);
+  }
   renderReposFromConfig();
   initScrollAddr();
   runBoot();

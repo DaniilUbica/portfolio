@@ -12,6 +12,7 @@ set(SOURCES
     ${PROJECT_SOURCE_DIR}/src/config/config.cpp
     ${PROJECT_SOURCE_DIR}/src/contentLoader/contentLoader.cpp
     ${PROJECT_SOURCE_DIR}/src/router/router.cpp
+    ${PROJECT_SOURCE_DIR}/src/githubClient/githubClient.cpp
 )
 
 set(INCLUDES
@@ -20,6 +21,9 @@ set(INCLUDES
     ${PROJECT_SOURCE_DIR}/src/config/config.ipp
     ${PROJECT_SOURCE_DIR}/src/contentLoader/contentLoader.hpp
     ${PROJECT_SOURCE_DIR}/src/router/router.hpp
+    ${PROJECT_SOURCE_DIR}/src/githubClient/githubClient.hpp
+
+    ${PROJECT_SOURCE_DIR}/src/core/ttlContainer.hpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} main.cpp
