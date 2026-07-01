@@ -4,6 +4,7 @@
 #include "src/server/server.hpp"
 #include "src/contentLoader/contentLoader.hpp"
 #include "src/router/router.hpp"
+#include "githubClient/githubClient.hpp"
 
 int main() {
     try {
@@ -12,7 +13,10 @@ int main() {
 
         content::ContentLoader loader(cfg.readValue(config::c_staticContentPath));
 
-        const router::Router router(cfg.readValue(config::c_frontendDirPath), server, loader);
+        github::GithubClient githubClient(cfg.readValue(config::c_githubUsername), cfg.readValue(config::c_githubToken));
+
+        router::RouterConfig routerConfig { cfg.readValue(config::c_frontendDirPath), server, loader, githubClient };
+        const router::Router router(std::move(routerConfig));
 
         server.run();
     }

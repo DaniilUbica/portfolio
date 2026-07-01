@@ -26,3 +26,9 @@ export async function loadPortfolioData() {
   if (!res.ok) throw new Error(`/api/content returned HTTP ${res.status}`);
   mapData(await res.json());
 }
+
+export async function loadRepos() {
+  const res = await fetch('/api/repos');
+  if (!res.ok) throw new Error(`/api/repos returned HTTP ${res.status}`);
+  CONFIG.repos = await res.json();
+}

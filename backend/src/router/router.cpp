@@ -1,6 +1,7 @@
 #include "router.hpp"
 
 #include "contentLoader/contentLoader.hpp"
+#include "githubClient/githubClient.hpp"
 
 #include <httplib.h>
 #include <fstream>
@@ -8,33 +9,56 @@
 
 using namespace router;
 
-Router::Router(const std::string& frontendDirPath, server::Server& server, content::ContentLoader& contentLoader) :
-    m_frontendDirPath(frontendDirPath), m_server(server), m_contentLoader(contentLoader)
+Router::Router(RouterConfig&& config) :
+    m_frontendDirPath(config.frontendDirPath),
+    m_server(config.server),
+    m_contentLoader(config.contentLoader),
+    m_githubClient(config.githubClient)
 {
-    m_server.get().registerRoute(server::Method::Get, "/api/content", std::move([this](const auto& req, auto& res) {
-        getContentHandler(req, res);
-    }));
-    m_server.get().registerRoute(server::Method::Post, "/api/content/reload", std::move([this](const auto& req, auto& res) {
-        postContentReloadHandler(req, res);
-    }));
-    m_server.get().registerRoute(server::Method::Get, "/error", std::move([this](const auto& req, auto& res) {
-        getErrorHandler(req, res);
-    }));
-    m_server.get().registerRoute(server::Method::Get, "/", std::move([this](const auto& req, auto& res) {
-        getMainPageHandler(req, res);
-    }));
+    m_server.get().registerRoute(server::Method::Get, "/api/content", contentHandler());
+    m_server.get().registerRoute(server::Method::Get, "/api/repos", githubReposHandler());
+    m_server.get().registerRoute(server::Method::Get, "/error", errorHandler());
+    m_server.get().registerRoute(server::Method::Get, "/", mainPageHandler());
+
+    m_server.get().registerRoute(server::Method::Post, "/api/content/reload", contentReloadHandler());
 }
 
-void Router::getMainPageHandler(const httplib::Request& req, httplib::Response& res) const {
-    loadHtmlPageToResponse(m_frontendDirPath + "/index.html", res);
+server::route_handler_t Router::mainPageHandler() const {
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        loadHtmlPageToResponse(m_frontendDirPath + "/index.html", res);
+    };
 }
 
-void Router::getContentHandler(const httplib::Request& req, httplib::Response& res) const {
-    res.set_content(m_contentLoader.get().load(), "application/json");
+server::route_handler_t Router::contentHandler() const {
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        res.set_content(m_contentLoader.get().load(), "application/json");
+    };
 }
 
-void Router::getErrorHandler(const httplib::Request& req, httplib::Response& res) const {
-    loadHtmlPageToResponse(m_frontendDirPath + "/error.html", res);
+server::route_handler_t Router::errorHandler() const {
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        loadHtmlPageToResponse(m_frontendDirPath + "/error.html", res);
+    };
+}
+
+server::route_handler_t Router::githubReposHandler() const {
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        const auto content = m_githubClient.get().fetchRepositories().dump();
+        res.set_content(content, "application/json");
+    };
+}
+
+server::route_handler_t Router::contentReloadHandler() const {
+    return [this](const httplib::Request& req, httplib::Response& res) {
+        try {
+            m_contentLoader.get().reloadContent();
+            res.set_content(R"({"status":"ok"})", "application/json");
+        }
+        catch (std::runtime_error& err) {
+            res.status = 500;
+            res.set_content(R"({"error":"can't reload content"})", "application/json");
+        }
+    };
 }
 
 void Router::loadHtmlPageToResponse(const std::string& pagePath, httplib::Response& res) const {
@@ -48,15 +72,4 @@ void Router::loadHtmlPageToResponse(const std::string& pagePath, httplib::Respon
     std::ostringstream ss;
     ss << file.rdbuf();
     res.set_content(ss.str(), "text/html");
-}
-
-void Router::postContentReloadHandler(const httplib::Request& req, httplib::Response& res) const {
-    try {
-        m_contentLoader.get().reloadContent();
-        res.set_content(R"({"status":"ok"})", "application/json");
-    }
-    catch (std::runtime_error& err) {
-        res.status = 500;
-        res.set_content(R"({"error":"can't reload content"})", "application/json");
-    }
 }

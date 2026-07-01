@@ -5,24 +5,37 @@
 #include "server/server.hpp"
 
 namespace content { class ContentLoader; }
+namespace github { class GithubClient; }
 
 namespace router {
 
+struct RouterConfig {
+    std::string frontendDirPath;
+    std::reference_wrapper<server::Server> server;
+    std::reference_wrapper<content::ContentLoader> contentLoader;
+    std::reference_wrapper<github::GithubClient> githubClient;
+};
+
 class Router final {
 public:
-    Router(const std::string& frontendDirPath, server::Server& server, content::ContentLoader& contentLoader);
+    Router(RouterConfig&& config);
 
 private:
-    void getMainPageHandler(const httplib::Request& req, httplib::Response& res) const;
-    void getContentHandler(const httplib::Request& req, httplib::Response& res) const;
-    void postContentReloadHandler(const httplib::Request& req, httplib::Response& res) const;
-    void getErrorHandler(const httplib::Request& req, httplib::Response& res) const;
+    /// get
+    server::route_handler_t mainPageHandler() const;
+    server::route_handler_t contentHandler() const;
+    server::route_handler_t errorHandler() const;
+    server::route_handler_t githubReposHandler() const;
+
+    /// post
+    server::route_handler_t contentReloadHandler() const;
 
     void loadHtmlPageToResponse(const std::string& pagePath, httplib::Response& res) const;
 
     std::string m_frontendDirPath;
     std::reference_wrapper<server::Server> m_server;
     std::reference_wrapper<content::ContentLoader> m_contentLoader;
+    std::reference_wrapper<github::GithubClient> m_githubClient;
 };
 
 }

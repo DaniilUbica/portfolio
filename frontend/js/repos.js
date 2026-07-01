@@ -24,10 +24,20 @@ function renderRepos(repos) {
 
   repos.forEach((repo, i) => {
     const addr    = toHex(0x00003000 + i * 0x80);
-    const stars   = repo.stargazers_count ? `★ ${repo.stargazers_count}` : '★ 0';
-    const lang    = repo.language || '??';
-    const updated = timeSince(repo.updated_at);
+    const stars   = repo.stargazerCount ? `★ ${repo.stargazerCount}` : '★ 0';
+    const lang    = repo.primaryLanguage?.name || '??';
     const desc    = repo.description || 'no description';
+
+    const topicNodes = repo.repositoryTopics?.nodes ?? [];
+    const topics  = topicNodes.length
+                      ? `<div class="topic-bar-wrap">${
+                          topicNodes.map(n => `<span class="topic-chip">${n.topic.name}</span>`).join('')
+                        }</div>`
+                      : '';
+
+    const langs   = repo.languages?.nodes?.slice(0, 4)
+                      .map(l => `<span class="lang-chip" style="border-color:${l.color}">${l.name}</span>`)
+                      .join('') || `<span class="lang-chip">${lang}</span>`;
 
     // encode description as hex preview
     const descBytes = Array.from(desc.slice(0,16)).map(c =>
@@ -45,7 +55,6 @@ function renderRepos(repos) {
           <span class="repo-name">${repo.name}</span>
           <span class="repo-lang">${lang}</span>
           <span class="repo-stars">${stars}</span>
-          <span class="repo-date">${updated}</span>
           <span class="repo-toggle" id="toggle-${i}">[+]</span>
         </div>
         <div class="repo-detail" id="detail-${i}">
@@ -55,12 +64,9 @@ function renderRepos(repos) {
             &nbsp;<span class="dascii">|${descAscii}|</span>
           </div>
           <div style="margin-top:8px;color:var(--green-dim);font-size:12px;">${desc}</div>
-          <div class="lang-bar-wrap">
-            <span class="lang-chip"><span class="lang-pct">${lang}</span></span>
-            ${repo.fork ? '<span class="lang-chip">fork</span>' : ''}
-            ${repo.topics?.slice(0,3).map(t => `<span class="lang-chip">${t}</span>`).join('') || ''}
-          </div>
-          <a class="repo-link" href="${repo.html_url}" target="_blank" rel="noopener">
+          <div class="lang-bar-wrap">${langs}</div>
+          ${topics}
+          <a class="repo-link" href="${repo.url}" target="_blank" rel="noopener">
             &gt; open github.com/${CONFIG.github}/${repo.name}
           </a>
         </div>

@@ -1,4 +1,4 @@
-import { loadPortfolioData } from './api.js';
+import { loadPortfolioData, loadRepos } from './api.js';
 import { renderHero } from './hero.js';
 import { renderAbout } from './about.js';
 import { renderSkillsList, renderSkillThreads, initSkillsViewToggle } from './skills.js';
@@ -32,6 +32,11 @@ async function init() {
   initSkillsViewToggle();
   renderStack();
   renderContact();
+  try {
+    await loadRepos();
+  } catch (e) {
+    console.error('[api] failed to load repos:', e.message);
+  }
   renderReposFromConfig();
   initScrollAddr();
   runBoot();
