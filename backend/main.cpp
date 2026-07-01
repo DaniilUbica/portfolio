@@ -4,7 +4,7 @@
 #include "src/server/server.hpp"
 #include "src/contentLoader/contentLoader.hpp"
 #include "src/router/router.hpp"
-#include "githubClient/githubClient.hpp"
+#include "src/githubClient/githubClient.hpp"
 
 int main() {
     try {
