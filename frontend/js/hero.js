@@ -1,8 +1,5 @@
 import { CONFIG } from './api.js';
 
-// ════════════════════════════════════════════════════════════
-//  HERO
-// ════════════════════════════════════════════════════════════
 export function renderHero() {
   document.getElementById('hero-name').textContent = CONFIG.name;
   document.getElementById('hero-role').textContent = CONFIG.role;

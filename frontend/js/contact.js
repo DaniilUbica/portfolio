@@ -1,9 +1,6 @@
 import { CONFIG } from './api.js';
 import { toHex } from './utils.js';
 
-// ════════════════════════════════════════════════════════════
-//  CONTACT SEGMENT
-// ════════════════════════════════════════════════════════════
 export function renderContact() {
   const container = document.getElementById('contact-list');
   container.innerHTML = CONFIG.contact.map((c, i) => {

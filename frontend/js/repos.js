@@ -1,11 +1,6 @@
 import { CONFIG } from './api.js';
-import { toHex, timeSince } from './utils.js';
+import { toHex } from './utils.js';
 
-// ════════════════════════════════════════════════════════════
-//  REPOS SEGMENT — comes from CONFIG.repos (loaded with the rest of
-//  the portfolio JSON), using the same field names as the GitHub
-//  repos API so this renderer doesn't care which one produced them.
-// ════════════════════════════════════════════════════════════
 export function renderReposFromConfig() {
   const repos = CONFIG.repos || [];
   renderRepos(repos);
@@ -23,27 +18,24 @@ function renderRepos(repos) {
   </div>`;
 
   repos.forEach((repo, i) => {
-    const addr    = toHex(0x00003000 + i * 0x80);
-    const stars   = repo.stargazerCount ? `★ ${repo.stargazerCount}` : '★ 0';
-    const lang    = repo.primaryLanguage?.name || '??';
-    const desc    = repo.description || 'no description';
+    const addr = toHex(0x00003000 + i * 0x80);
+    const stars = repo.stargazerCount ? `★ ${repo.stargazerCount}` : '★ 0';
+    const lang  = repo.primaryLanguage?.name || '??';
+    const desc  = repo.description || 'no description';
 
     const topicNodes = repo.repositoryTopics?.nodes ?? [];
-    const topics  = topicNodes.length
-                      ? `<div class="topic-bar-wrap">${
-                          topicNodes.map(n => `<span class="topic-chip">${n.topic.name}</span>`).join('')
-                        }</div>`
-                      : '';
+    const topics = topicNodes.length
+      ? `<div class="topic-bar-wrap">${topicNodes.map(n => `<span class="topic-chip">${n.topic.name}</span>`).join('')}</div>`
+      : '';
 
-    const langs   = repo.languages?.nodes?.slice(0, 4)
-                      .map(l => `<span class="lang-chip" style="border-color:${l.color}">${l.name}</span>`)
-                      .join('') || `<span class="lang-chip">${lang}</span>`;
+    const langs = repo.languages?.nodes?.slice(0, 4)
+      .map(l => `<span class="lang-chip" style="border-color:${l.color}">${l.name}</span>`)
+      .join('') || `<span class="lang-chip">${lang}</span>`;
 
-    // encode description as hex preview
-    const descBytes = Array.from(desc.slice(0,16)).map(c =>
-      c.charCodeAt(0).toString(16).padStart(2,'0').toUpperCase()
+    const descBytes = Array.from(desc.slice(0, 16)).map(c =>
+      c.charCodeAt(0).toString(16).padStart(2, '0').toUpperCase()
     ).join(' ');
-    const descAscii = Array.from(desc.slice(0,16)).map(c => {
+    const descAscii = Array.from(desc.slice(0, 16)).map(c => {
       const code = c.charCodeAt(0);
       return (code >= 32 && code < 127) ? c : '.';
     }).join('');

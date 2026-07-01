@@ -1,9 +1,6 @@
 import { CONFIG } from './api.js';
 import { toHex } from './utils.js';
 
-// ════════════════════════════════════════════════════════════
-//  STACK SEGMENT
-// ════════════════════════════════════════════════════════════
 export function renderStack() {
   const container = document.getElementById('stack-frames');
   container.innerHTML = CONFIG.experience.map((e, i) => {

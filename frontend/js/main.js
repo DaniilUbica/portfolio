@@ -9,13 +9,8 @@ import { initScrollAddr } from './scroll.js';
 import { initThemeSwitcher } from './themes.js';
 import { runBoot } from './boot.js';
 
-// repo-header uses an inline onclick="toggleRepo(i)" in the markup,
-// so the handler needs to be reachable on window
 window.toggleRepo = toggleRepo;
 
-// ════════════════════════════════════════════════════════════
-//  INIT
-// ════════════════════════════════════════════════════════════
 async function init() {
   initThemeSwitcher();
   try {

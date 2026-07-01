@@ -22,7 +22,6 @@
 .repo-name   { color: var(--accent); font-weight: 700; flex: 1; }
 .repo-lang   { color: var(--comment); font-size: 11px; width: 50px; }
 .repo-stars  { color: #ffb000; font-size: 11px; width: 48px; }
-.repo-date   { color: var(--comment); font-size: 11px; width: 80px; }
 .repo-toggle { color: var(--green-dim); font-size: 11px; }
 
 .repo-detail {

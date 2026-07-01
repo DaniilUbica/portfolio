@@ -1,8 +1,5 @@
 import { toHex } from './utils.js';
 
-// ════════════════════════════════════════════════════════════
-//  SCROLL ADDRESS
-// ════════════════════════════════════════════════════════════
 export function initScrollAddr() {
   window.addEventListener('scroll', updateScrollAddr, { passive: true });
 }

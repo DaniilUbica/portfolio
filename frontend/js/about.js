@@ -1,9 +1,6 @@
 import { CONFIG } from './api.js';
 import { toHex } from './utils.js';
 
-// ════════════════════════════════════════════════════════════
-//  ABOUT SEGMENT
-// ════════════════════════════════════════════════════════════
 export function renderAbout() {
   const decoded = document.getElementById('about-decoded-lines');
   decoded.innerHTML = CONFIG.bio.map((line, i) => `

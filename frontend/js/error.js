@@ -1,11 +1,6 @@
 import { toHex } from './utils.js';
 import { initThemeSwitcher } from './themes.js';
 
-// ════════════════════════════════════════════════════════════
-//  ERROR CATALOG — one entry per HTTP status this page can render.
-//  The backend redirects/serves this page with ?code=<status> for
-//  any error it wants to show through the same template.
-// ════════════════════════════════════════════════════════════
 const ERRORS = {
   404: {
     trap: 'SIGNAL TRAPPED — SIGSEGV',
@@ -31,7 +26,7 @@ const ERRORS = {
   default: {
     trap: 'SIGNAL TRAPPED — SIGILL',
     title: 'Unknown error',
-    desc: 'Something went wrong and the exact cause wasn’t recognized by this page. Check the status code or try returning to the index.',
+    desc: 'Something went wrong and the exact cause wasn\'t recognized by this page. Check the status code or try returning to the index.',
     signal: 'SIGILL',
     fault: 'unknown_fault()',
   },

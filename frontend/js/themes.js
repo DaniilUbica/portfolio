@@ -1,6 +1,3 @@
-// ════════════════════════════════════════════════════════════
-//  THEMES
-// ════════════════════════════════════════════════════════════
 export function applyTheme(theme) {
   document.documentElement.dataset.theme = theme === 'matrix' ? '' : theme;
   document.querySelectorAll('.theme-dot').forEach(d => {

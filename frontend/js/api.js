@@ -1,9 +1,3 @@
-// ════════════════════════════════════════════════════════════
-//  API — single source of truth for portfolio data.
-//  Fetches /api/content, maps backend fields to frontend shape,
-//  and exposes CONFIG so every module gets the same object reference.
-// ════════════════════════════════════════════════════════════
-
 export const CONFIG = {};
 
 function mapData(data) {
@@ -18,7 +12,7 @@ function mapData(data) {
   CONFIG.skillThreads = data.skills     ?? [];
   CONFIG.experience   = data.experience ?? [];
   CONFIG.contact      = socials.map(s => ({ key: s.name, val: s.value, href: s.ref }));
-  CONFIG.repos        = [];             // populated later by /api/repos
+  CONFIG.repos        = [];
 }
 
 export async function loadPortfolioData() {

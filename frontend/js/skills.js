@@ -1,9 +1,6 @@
 import { CONFIG } from './api.js';
 import { toHex } from './utils.js';
 
-// ════════════════════════════════════════════════════════════
-//  SKILLS SEGMENT — list view + parallel threads / call stacks
-// ════════════════════════════════════════════════════════════
 export function renderSkillsList() {
   const table = document.getElementById('skills-list-table');
   table.innerHTML = CONFIG.skillThreads.map((t, ti) => {
@@ -61,9 +58,6 @@ export function renderSkillThreads() {
   window.addEventListener('resize', layoutThreadsTree);
 }
 
-// Parallel-Stacks style layout: one root thread, others branch off it in
-// columns by depth. Each column is a vertical stack of non-overlapping
-// blocks, so a parent→child line never has to cross another block.
 export function layoutThreadsTree() {
   const outer = document.getElementById('skills-outer');
   const wrap  = document.getElementById('skills-threads');
@@ -72,13 +66,11 @@ export function layoutThreadsTree() {
   const byId = {};
   CONFIG.skillThreads.forEach(t => { byId[t.id] = t; });
 
-  // depth = distance from a root (a thread with no joins, or whose join
-  // target isn't in this dataset)
   const depthCache = {};
   function depthOf(id, seen) {
     if (depthCache[id] !== undefined) return depthCache[id];
     seen = seen || new Set();
-    if (seen.has(id)) return 0; // guard against cycles
+    if (seen.has(id)) return 0;
     seen.add(id);
     const t = byId[id];
     const parent = t.joins && t.joins[0];
@@ -99,7 +91,6 @@ export function layoutThreadsTree() {
   const sidePad  = 10;
   const wrapWidth = Math.max(outer.clientWidth - sidePad * 2, blockW);
 
-  // wrap rows that would overflow the container width onto extra lines
   const lines = [];
   rowsOfThreads.forEach(row => {
     let line = [];
@@ -162,7 +153,6 @@ function drawThreadLinks() {
     blocks[el.dataset.thread] = el;
   });
 
-  // point on rect border where the line toward (tx,ty) exits the box
   function edgePoint(rect, cx, cy, tx, ty) {
     const dx = tx - cx, dy = ty - cy;
     if (dx === 0 && dy === 0) return { x: cx, y: cy };
