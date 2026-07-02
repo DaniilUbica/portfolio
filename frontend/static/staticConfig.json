@@ -53,7 +53,7 @@
             "joins": [],
             "frames": [
               { "name": "Systems programming", "lvl": "MAIN" },
-              { "name": "Performance-critical apps", "lvl": "" },
+              { "name": "Software architecture", "lvl": "" },
               { "name": "Cross-platform software", "lvl": "" }
             ]
           },
@@ -61,12 +61,12 @@
             "id": "cpp",
             "name": "cpp",
             "state": "RUNNING",
-            "joins": ["dev"],
+            "joins": ["langs"],
             "frames": [
               { "name": "C++17 / C++20", "lvl": "MAIN" },
-              { "name": "STL / templates", "lvl": "" },
-              { "name": "RAII / smart pointers", "lvl": "" },
+              { "name": "Boost", "lvl": "" },
               { "name": "Multithreading", "lvl": "" },
+              { "name": "Networking / sockets", "lvl": "" },
               { "name": "CMake", "lvl": "" }
             ]
           },
@@ -76,37 +76,41 @@
             "state": "RUNNING",
             "joins": ["cpp"],
             "frames": [
-              { "name": "QtWidgets", "lvl": "MAIN" },
-              { "name": "Signals / slots", "lvl": "" },
-              { "name": "QML", "lvl": "" }
+              { "name": "QtQuick/Qml", "lvl": "MAIN" },
+              { "name": "Thread affinity", "lvl": "" },
+              { "name": "QML animations", "lvl": "" }
             ]
           },
           {
-            "id": "git",
-            "name": "git",
+            "id": "os",
+            "name": "os",
             "state": "RUNNING",
-            "joins": ["cpp"],
+            "joins": ["dev"],
             "frames": [
-              { "name": "Git / GitHub", "lvl": "MAIN" },
-              { "name": "Branching workflows", "lvl": "" },
-              { "name": "Code review", "lvl": "" }
+              { "name": "Linux / MacOS / Windows", "lvl": "MAIN" },
+              { "name": "Platform API", "lvl": "" },
+              { "name": "DBus", "lvl": "" },
+              { "name": "Process management", "lvl": "" },
+              { "name": "IPC", "lvl": "" }
             ]
           },
           {
-            "id": "algo",
-            "name": "algorithms",
+            "id": "langs",
+            "name": "languages",
             "state": "RUNNING",
-            "joins": ["cpp"],
+            "joins": ["dev"],
             "frames": [
-              { "name": "Algorithms / DS", "lvl": "MAIN" },
-              { "name": "Complexity analysis", "lvl": "" }
+              { "name": "C++", "lvl": "MAIN" },
+              { "name": "Objective C", "lvl": "" },
+              { "name": "Qml", "lvl": "" },
+              { "name": "Python", "lvl": "" }
             ]
           },
           {
             "id": "python",
             "name": "python",
             "state": "IDLE",
-            "joins": ["dev"],
+            "joins": ["langs"],
             "frames": [
               { "name": "Python", "lvl": "MAIN" },
               { "name": "Scripting / tooling", "lvl": "" }

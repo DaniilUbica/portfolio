@@ -39,17 +39,6 @@ portfolio/
         └── ci.yml    # Build, test, release
 ```
 
-## API
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET | `/` | Main page |
-| GET | `/api/content` | Site content from `staticConfig.json` |
-| GET | `/api/repos` | Pinned GitHub repositories via GraphQL |
-| POST | `/api/content/reload` | Reload content from disk |
-
-`/api/*` routes require `Content-Type: application/json`. Browser navigation to API endpoints redirects to the error page.
-
 ## Configuration
 
 All configuration is done via environment variables. See `deploy/.env.example`:
