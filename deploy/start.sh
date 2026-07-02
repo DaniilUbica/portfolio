@@ -36,8 +36,28 @@ docker run -d \
 
 echo "[start.sh] Container started."
 
-echo "[start.sh] Starting webhook listener on port ${WEBHOOK_PORT}..."
+echo "[start.sh] Setting up webhook systemd service..."
 
-export WEBHOOK_SECRET WEBHOOK_PORT GITHUB_REPO CONTAINER_NAME ENV_FILE
+SERVICE_FILE="/etc/systemd/system/${CONTAINER_NAME}-webhook.service"
 
-exec python3 "$SCRIPT_DIR/webhook.py"
+cat > "$SERVICE_FILE" << EOF
+[Unit]
+Description=Portfolio webhook listener
+After=network.target
+
+[Service]
+EnvironmentFile=${ENV_FILE}
+ExecStart=/usr/bin/python3 ${SCRIPT_DIR}/webhook.py
+Restart=always
+RestartSec=5
+User=root
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable  "${CONTAINER_NAME}-webhook"
+systemctl restart "${CONTAINER_NAME}-webhook"
+
+echo "[start.sh] Webhook service started."
