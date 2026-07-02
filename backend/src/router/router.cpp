@@ -15,12 +15,13 @@ Router::Router(RouterConfig&& config) :
     m_contentLoader(config.contentLoader),
     m_githubClient(config.githubClient)
 {
-    m_server.get().registerRoute(server::Method::Get, "/api/content", contentHandler());
-    m_server.get().registerRoute(server::Method::Get, "/api/repos", githubReposHandler());
+    m_server.get().registerInternalRoute(server::Method::Get, "/api/content", contentHandler());
+    m_server.get().registerInternalRoute(server::Method::Get, "/api/repos", githubReposHandler());
+
     m_server.get().registerRoute(server::Method::Get, "/error", errorHandler());
     m_server.get().registerRoute(server::Method::Get, "/", mainPageHandler());
 
-    m_server.get().registerRoute(server::Method::Post, "/api/content/reload", contentReloadHandler());
+    m_server.get().registerInternalRoute(server::Method::Post, "/api/content/reload", contentReloadHandler());
 }
 
 server::route_handler_t Router::mainPageHandler() const {

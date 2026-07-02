@@ -28,7 +28,14 @@ Server::Server(const std::string& frontendDirPath, int port) :
     });
 
     m_server->set_error_handler([](const httplib::Request& req, httplib::Response& res) {
-        res.set_redirect("/error?code=" + std::to_string(res.status));
+        const auto accept = req.get_header_value("Accept");
+        if (accept.find("text/html") != std::string::npos) {
+            res.set_redirect("/error?code=" + std::to_string(res.status));
+            return;
+        }
+        if (res.body.empty()) {
+            res.set_content(R"({"error":"request failed"})", "application/json");
+        }
     });
 
     setupStaticFiles();
@@ -50,6 +57,18 @@ void Server::registerRoute(Method method, const std::string& route, route_handle
     else {
         throw std::logic_error("trying to register unimplemented http method");
     }
+}
+
+void Server::registerInternalRoute(Method method, const std::string& route, route_handler_t&& handler) {
+    auto wrapped = [h = std::move(handler)](const httplib::Request& req, httplib::Response& res) {
+        const auto ct = req.get_header_value("Content-Type");
+        if (ct.find("application/json") == std::string::npos) {
+            res.status = 415;
+            return;
+        }
+        h(req, res);
+    };
+    registerRoute(method, route, std::move(wrapped));
 }
 
 void Server::setupStaticFiles() {

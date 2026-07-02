@@ -25,6 +25,7 @@ public:
 
     void run();
     void registerRoute(Method method, const std::string& route, route_handler_t&& handler);
+    void registerInternalRoute(Method method, const std::string& route, route_handler_t&& handler);
 
 private:
     void setupStaticFiles();

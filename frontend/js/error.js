@@ -9,6 +9,13 @@ const ERRORS = {
     signal: 'SIGSEGV',
     fault: 'page_not_found()',
   },
+  415: {
+    trap: 'SIGNAL TRAPPED — SIGBUS',
+    title: 'Access denied',
+    desc: 'This endpoint is internal and cannot be accessed directly from a browser.',
+    signal: 'SIGBUS',
+    fault: 'check_permissions()',
+  },
   500: {
     trap: 'SIGNAL TRAPPED — SIGABRT',
     title: 'Internal server error',

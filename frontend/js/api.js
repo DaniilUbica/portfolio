@@ -15,14 +15,16 @@ function mapData(data) {
   CONFIG.repos        = [];
 }
 
+const internalHeaders = { 'Content-Type': 'application/json' };
+
 export async function loadPortfolioData() {
-  const res = await fetch('/api/content');
+  const res = await fetch('/api/content', { headers: internalHeaders });
   if (!res.ok) throw new Error(`/api/content returned HTTP ${res.status}`);
   mapData(await res.json());
 }
 
 export async function loadRepos() {
-  const res = await fetch('/api/repos');
+  const res = await fetch('/api/repos', { headers: internalHeaders });
   if (!res.ok) throw new Error(`/api/repos returned HTTP ${res.status}`);
   CONFIG.repos = await res.json();
 }
