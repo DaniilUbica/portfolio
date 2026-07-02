@@ -28,7 +28,12 @@ function renderRepos(repos) {
       ? `<div class="topic-bar-wrap">${topicNodes.map(n => `<span class="topic-chip">${n.topic.name}</span>`).join('')}</div>`
       : '';
 
-    const langs = repo.languages?.nodes?.slice(0, 4)
+    let langNodes = repo.languages?.nodes ?? [];
+    const primaryLang = repo.primaryLanguage;
+    if (primaryLang && !langNodes.some(l => l.name === primaryLang.name)) {
+      langNodes = [primaryLang, ...langNodes];
+    }
+    const langs = langNodes.slice(0, 4)
       .map(l => `<span class="lang-chip" style="border-color:${l.color}">${l.name}</span>`)
       .join('') || `<span class="lang-chip">${lang}</span>`;
 

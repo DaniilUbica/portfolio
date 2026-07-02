@@ -57,9 +57,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          sparse-checkout: |
-            frontend
-            staticConfig.json
+          sparse-checkout: frontend
           sparse-checkout-cone-mode: false
 
       - name: Download binary artifact
@@ -80,4 +78,3 @@ jobs:
           files: |
             portfolio-backend-linux-x86_64.tar.gz
             frontend.tar.gz
-            staticConfig.json

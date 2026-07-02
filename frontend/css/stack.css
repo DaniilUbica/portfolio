@@ -9,3 +9,15 @@
 .sf-func   { color: var(--accent); font-weight: 700; }
 .sf-file   { color: var(--comment); font-size: 11px; }
 .sf-args   { color: var(--green-dim); font-size: 12px; margin-top: 2px; }
+
+.cv-download-wrap { margin-top: 12px; }
+.cv-download-btn {
+  display: inline-block;
+  color: var(--green);
+  text-decoration: none;
+  border: 1px solid var(--green-dim);
+  padding: 4px 14px;
+  font-size: 12px;
+  transition: background 0.15s;
+}
+.cv-download-btn:hover { background: var(--green-faint); }

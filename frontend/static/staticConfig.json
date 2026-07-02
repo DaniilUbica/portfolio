@@ -20,27 +20,28 @@
         }
     ],
     "about": [
-        "Systems programmer focused on performance-critical applications.",
-        "Passionate about low-level optimization, memory management,",
-        "and building reliable cross-platform software in C++."
+        "Software developer from Moscow.",
+        "Mostly working on desktop and system-level software in C++.",
+        "Interested in everything dev-related — from system tooling",
+        "to games development."
     ],
     "experience": [
         {
-            "func":  "C++ Developer",
+            "func":  "Software Developer",
             "file":  "reverselab.cpp",
-            "args":  "system security, siem, backend",
+            "args":  "SIEM system development, security, backend, server",
             "date":  "2026 — present"
         },
         {
-            "func":  "Junior C++ Developer",
+            "func":  "C++ Developer",
             "file":  "TrueConf.cpp",
-            "args":  "embedded systems, Qt GUI applications",
+            "args":  "cross-platform desktop app development, Qt/QML, media processing",
             "date":  "2023 — 2026"
         },
         {
             "func":  "CS Student",
             "file":  "msut_stankin.cpp",
-            "args":  "algorithms, data structures, OS internals",
+            "args":  "applied informatics, algorithms, OS internals, management, modeling",
             "date":  "2021 — 2025"
         }
     ],

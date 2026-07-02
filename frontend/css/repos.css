@@ -20,7 +20,7 @@
 
 .repo-addr   { color: var(--addr); font-size: 11px; width: 80px; }
 .repo-name   { color: var(--accent); font-weight: 700; flex: 1; }
-.repo-lang   { color: var(--comment); font-size: 11px; width: 50px; }
+.repo-lang   { color: var(--comment); font-size: 11px; width: 90px; text-align: right; }
 .repo-stars  { color: #ffb000; font-size: 11px; width: 48px; }
 .repo-toggle { color: var(--green-dim); font-size: 11px; }
 
