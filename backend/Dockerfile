@@ -45,11 +45,10 @@ WORKDIR /app
 
 COPY --from=builder /src/backend/build/portfolio_backend ./portfolio_backend
 COPY frontend                                            ./frontend
-COPY staticConfig.json                                   ./staticConfig.json
 
 ENV serverPort=6767
 ENV frontendDirPath=/app/frontend
-ENV staticContentPath=/app/staticConfig.json
+ENV staticContentPath=/app/frontend/static/staticConfig.json
 
 EXPOSE 6767
 
