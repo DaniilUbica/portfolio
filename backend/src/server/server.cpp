@@ -37,7 +37,7 @@ Server::Server(const std::string& frontendDirPath, int port) :
 Server::~Server() {}
 
 void Server::run() {
-    m_server->listen("127.0.0.1", m_port);
+    m_server->listen("0.0.0.0", m_port);
 }
 
 void Server::registerRoute(Method method, const std::string& route, route_handler_t&& handler) {

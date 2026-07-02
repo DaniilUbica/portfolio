@@ -2,3 +2,4 @@ backend/build/
 **/.git
 **/.gitignore
 *.md
+deploy/

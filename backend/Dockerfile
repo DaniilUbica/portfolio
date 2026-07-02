@@ -14,10 +14,9 @@ RUN apt-get update && apt-get install -y \
 
 RUN conan profile detect --force
 
-WORKDIR /src
-
-COPY backend/conanfile.txt ./backend/
 WORKDIR /src/backend
+
+COPY backend/conanfile.txt .
 
 RUN conan install . \
         --output-folder=build \
@@ -25,15 +24,16 @@ RUN conan install . \
         -s build_type=Release \
         -s compiler.cppstd=20
 
-COPY backend/ ./
-COPY frontend/ /src/frontend/
+COPY backend/ .
 
 RUN cmake -B build \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_TOOLCHAIN_FILE=build/conan_toolchain.cmake \
     && cmake --build build --config Release -j"$(nproc)"
 
-FROM debian:bookworm-slim AS runtime
+FROM ubuntu:24.04 AS runtime
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
         libssl3 \
@@ -43,8 +43,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY --from=builder /src/backend/build/portfolio_backend ./portfolio_backend
-COPY --from=builder /src/backend/build/frontend           ./frontend
-COPY staticConfig.json                                    ./staticConfig.json
+COPY frontend                                            ./frontend
+COPY staticConfig.json                                   ./staticConfig.json
 
 ENV serverPort=6767
 ENV frontendDirPath=/app/frontend
