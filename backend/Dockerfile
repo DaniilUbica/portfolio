@@ -25,6 +25,7 @@ RUN conan install . \
         -s compiler.cppstd=20
 
 COPY backend/ .
+COPY frontend/ /src/frontend/
 
 RUN cmake -B build \
         -DCMAKE_BUILD_TYPE=Release \
