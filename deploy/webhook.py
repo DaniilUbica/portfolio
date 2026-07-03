@@ -43,7 +43,7 @@ def run(cmd: list[str]) -> bool:
     return True
 
 
-def redeploy():
+def redeploy(tag: str = "latest"):
     log.info("=== redeployment started ===")
 
     image = f"{CONTAINER_NAME}-deploy"
@@ -51,6 +51,7 @@ def redeploy():
     steps = [
         ["docker", "build",
             "--build-arg", f"GITHUB_REPO={GITHUB_REPO}",
+            "--build-arg", f"RELEASE_TAG={tag}",
             "-t", image,
             DEPLOY_DIR],
         ["docker", "stop", CONTAINER_NAME],
@@ -104,7 +105,7 @@ class WebhookHandler(http.server.BaseHTTPRequestHandler):
         log.info("release %s published — scheduling redeploy", tag)
 
         self._respond(200, b"ok")
-        threading.Thread(target=redeploy, daemon=True).start()
+        threading.Thread(target=redeploy, args=(tag,), daemon=True).start()
 
     def _respond(self, status: int, body: bytes):
         self.send_response(status)
