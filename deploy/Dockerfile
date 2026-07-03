@@ -20,15 +20,18 @@ RUN set -e; \
     \
     BINARY_URL=$(echo "$ASSETS"   | grep -o '"browser_download_url": *"[^"]*portfolio-backend-linux-x86_64[^"]*"' | grep -o 'https://[^"]*'); \
     FRONTEND_URL=$(echo "$ASSETS" | grep -o '"browser_download_url": *"[^"]*frontend[^"]*"'                        | grep -o 'https://[^"]*'); \
+    DATA_URL=$(echo "$ASSETS"     | grep -o '"browser_download_url": *"[^"]*data[^"]*"'                            | grep -o 'https://[^"]*'); \
     \
     curl -fsSL -L "$BINARY_URL"   | tar -xz; \
     curl -fsSL -L "$FRONTEND_URL" | tar -xz; \
+    curl -fsSL -L "$DATA_URL"     | tar -xz; \
     \
     chmod +x portfolio_backend
 
 ENV serverPort=6767
 ENV frontendDirPath=/app/frontend
-ENV staticContentPath=/app/frontend/static/staticConfig.json
+ENV staticContentPath=/app/data/staticConfig.json
+ENV cvPath=/app/data/cv.pdf
 
 EXPOSE 6767
 

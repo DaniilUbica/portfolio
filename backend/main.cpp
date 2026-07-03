@@ -15,7 +15,8 @@ int main() {
 
         github::GithubClient githubClient(cfg.readValue(config::c_githubUsername), cfg.readValue(config::c_githubToken));
 
-        router::RouterConfig routerConfig { cfg.readValue(config::c_frontendDirPath), server, loader, githubClient };
+        router::RouterConfig routerConfig { cfg.readValue(config::c_frontendDirPath), cfg.readValue(config::c_adminPassword),
+            cfg.readValue(config::c_cvPath), server, loader, githubClient };
         const router::Router router(std::move(routerConfig));
 
         server.run();

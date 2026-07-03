@@ -1,0 +1,264 @@
+/* ── ADMIN ── */
+
+body {
+  background: var(--bg);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  min-height: 100vh;
+}
+
+#header {
+  border-bottom: 1px solid var(--border);
+  padding: 10px 24px;
+  background: var(--bg2);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-title {
+  color: var(--green);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.header-addr {
+  color: var(--comment);
+  font-size: 11px;
+}
+
+/* ── LOGIN ── */
+
+#admin-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 45px);
+  padding: 24px;
+}
+
+/* ── EDITOR ── */
+
+#admin-editor {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ── SECTION ── */
+
+.adm-section {
+  margin-bottom: 40px;
+}
+
+.adm-section-label {
+  color: var(--green-dim);
+  font-size: 11px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+
+/* ── BOX (login) ── */
+
+.adm-box {
+  border: 1px solid var(--border);
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg2);
+}
+
+.adm-box-label {
+  color: var(--green);
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+/* ── FIELDS ── */
+
+.adm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.adm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.adm-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.adm-label {
+  color: var(--comment);
+  font-size: 10px;
+}
+
+.adm-input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 6px 10px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.adm-input:focus {
+  border-color: var(--green-dim);
+}
+
+.adm-textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 8px 10px;
+  outline: none;
+  resize: vertical;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+
+.adm-textarea:focus {
+  border-color: var(--green-dim);
+}
+
+.adm-textarea-mono {
+  color: var(--green-dim);
+  font-size: 11px;
+}
+
+/* ── EXPERIENCE ROWS ── */
+
+.exp-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 1fr auto;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.exp-row .adm-input {
+  margin-bottom: 0;
+}
+
+.exp-remove {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--comment);
+  font-family: inherit;
+  font-size: 11px;
+  padding: 6px 8px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.exp-remove:hover {
+  border-color: #ff4444;
+  color: #ff4444;
+}
+
+/* ── BUTTONS ── */
+
+.adm-btn {
+  display: inline-block;
+  background: none;
+  border: 1px solid var(--green-dim);
+  color: var(--green);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 6px 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.adm-btn:hover {
+  background: var(--green-faint);
+}
+
+.adm-btn.primary {
+  border-color: var(--green);
+}
+
+.adm-btn.large {
+  font-size: 13px;
+  padding: 10px 28px;
+}
+
+.adm-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.adm-btn:disabled:hover {
+  background: none;
+}
+
+/* ── MESSAGES ── */
+
+.adm-error {
+  color: #ff4444;
+  font-size: 11px;
+  min-height: 16px;
+  margin-top: 4px;
+}
+
+.adm-msg {
+  font-size: 11px;
+  min-height: 16px;
+  margin-bottom: 10px;
+  color: var(--green-dim);
+}
+
+.adm-msg.error {
+  color: #ff4444;
+}
+
+/* ── ACTIONS ── */
+
+.adm-actions {
+  position: sticky;
+  bottom: 0;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* ── CURSOR ── */
+
+.cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+  color: var(--green);
+  font-size: 0.9em;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
