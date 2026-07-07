@@ -8,9 +8,9 @@ be careful... frontend is vibecoded
 
 ## Stack
 
-**Backend** — C++20, [cpp-httplib](https://github.com/yhirose/cpp-httplib), [nlohmann/json](https://github.com/nlohmann/nlohmann_json), Conan, CMake  
+**Backend** — C++20, [cpp-httplib](https://github.com/yhirose/cpp-httplib)
 **Frontend** — HTML, CSS, JS  
-**Infrastructure** — Docker, GitHub Actions, nginx, Let's Encrypt
+**Infrastructure** — Docker, GitHub Actions, nginx
 
 ## Project structure
 
@@ -25,13 +25,16 @@ portfolio/
 │   │   └── githubClient/   # GitHub GraphQL API client
 │   ├── Dockerfile
 │   └── CMakeLists.txt
+├── data/             # Content and assets served via API
+│   ├── staticConfig.json  # Site content (bio, experience, skills, socials)
+│   └── cv.pdf
 ├── frontend/         # Static frontend
 │   ├── css/
 │   ├── js/
-│   ├── static/       # Static assets (cv.pdf, staticConfig.json)
 │   ├── index.html
+│   ├── admin.html
 │   └── error.html
-├── deploy/           # VPS deployment
+├── deploy/           # Server deployment
 │   ├── Dockerfile    # Pulls latest release artifacts from GitHub
 │   ├── start.sh      # Builds image, starts container, sets up webhook service
 │   ├── webhook.py    # GitHub webhook listener — redeploys on new release
@@ -48,9 +51,11 @@ All configuration is done via environment variables. See `deploy/.env.example`:
 ```env
 serverPort=6767
 frontendDirPath=/app/frontend
-staticContentPath=/app/frontend/static/staticConfig.json
+staticContentPath=/app/data/staticConfig.json
+cvPath=/app/data/cv.pdf
 githubUsername=your_username
 githubToken=ghp_...
+adminPassword=your_admin_password
 
 GITHUB_REPO=username/portfolio
 WEBHOOK_SECRET=your_webhook_secret
@@ -90,33 +95,3 @@ cd /root/repos/portfolio/deploy && ./start.sh
 ```
 
 `start.sh` builds the Docker image, starts the container, and registers the webhook listener as a systemd service.
-
-### nginx
-
-```nginx
-server {
-    listen 80;
-    server_name daniilubica.lol www.daniilubica.lol;
-    return 301 https://$host$request_uri;
-}
-
-server {
-    listen 443 ssl;
-    server_name daniilubica.lol www.daniilubica.lol;
-
-    ssl_certificate     /etc/ssl/daniilubica.lol/cert.pem;
-    ssl_certificate_key /etc/ssl/daniilubica.lol/key.pem;
-
-    location / {
-        proxy_pass http://127.0.0.1:6767;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-
-    location /webhook/release {
-        proxy_pass http://127.0.0.1:9000;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-}
-```
