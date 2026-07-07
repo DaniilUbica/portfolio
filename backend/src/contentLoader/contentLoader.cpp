@@ -18,6 +18,16 @@ void ContentLoader::reloadContent() {
     loadContentFromFile();
 }
 
+void ContentLoader::saveContent(const nlohmann::json& content) {
+    std::ofstream file(m_contentPath);
+    if (!file.is_open()) {
+        throw std::runtime_error("cannot write config: " + m_contentPath);
+    }
+
+    file << content.dump(4);
+    m_content = content;
+}
+
 void ContentLoader::loadContentFromFile() {
     std::ifstream file(m_contentPath);
     if (!file.is_open()) {

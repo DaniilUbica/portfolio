@@ -2,6 +2,9 @@
 
 #include <httplib.h>
 #include <iostream>
+#include <random>
+#include <sstream>
+#include <iomanip>
 
 using namespace server;
 
@@ -66,9 +69,53 @@ void Server::registerInternalRoute(Method method, const std::string& route, rout
             res.status = 415;
             return;
         }
+
         h(req, res);
     };
+
     registerRoute(method, route, std::move(wrapped));
+}
+
+
+void Server::registerSessionRoute(Method method, const std::string& route, route_handler_t&& handler) {
+    auto wrapped = [this, h = std::move(handler)](const httplib::Request& req, httplib::Response& res) {
+        const auto token = req.get_header_value("X-Session-Token");
+        auto it = m_sessions.find(token);
+        if (token.empty() || it == m_sessions.end() || !it->valid()) {
+            res.status = 401;
+            res.set_content(R"({"error":"unauthorized"})", "application/json");
+            return;
+        }
+
+        it->refresh();
+        h(req, res);
+    };
+
+    registerRoute(method, route, std::move(wrapped));
+}
+
+std::string Server::createSession() {
+    for (auto it = m_sessions.begin(); it != m_sessions.end(); ) {
+        it = it->valid() ? ++it : m_sessions.erase(it);
+    }
+
+    const auto token = generateToken();
+    m_sessions.emplace(token);
+
+    return token;
+}
+
+std::string Server::generateToken() {
+    std::random_device rd;
+    std::mt19937_64 gen(rd());
+    std::uniform_int_distribution<uint64_t> dist;
+
+    std::ostringstream oss;
+    oss << std::hex << std::setfill('0')
+        << std::setw(16) << dist(gen)
+        << std::setw(16) << dist(gen);
+
+    return oss.str();
 }
 
 void Server::setupStaticFiles() {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <string>
 
 #include "server/server.hpp"
 
@@ -11,6 +12,8 @@ namespace router {
 
 struct RouterConfig {
     std::string frontendDirPath;
+    std::string adminPassword;
+    std::string cvPath;
     std::reference_wrapper<server::Server> server;
     std::reference_wrapper<content::ContentLoader> contentLoader;
     std::reference_wrapper<github::GithubClient> githubClient;
@@ -24,18 +27,20 @@ private:
     /// get
     server::route_handler_t mainPageHandler() const;
     server::route_handler_t contentHandler() const;
-    server::route_handler_t errorHandler() const;
+    server::route_handler_t errorPageHandler() const;
     server::route_handler_t githubReposHandler() const;
+    server::route_handler_t adminPageHandler() const;
+    server::route_handler_t cvHandler() const;
 
     /// post
     server::route_handler_t contentReloadHandler() const;
+    server::route_handler_t adminAuthHandler() const;
+    server::route_handler_t adminContentSaveHandler() const;
+    server::route_handler_t adminCVUploadHandler() const;
 
     void loadHtmlPageToResponse(const std::string& pagePath, httplib::Response& res) const;
 
-    std::string m_frontendDirPath;
-    std::reference_wrapper<server::Server> m_server;
-    std::reference_wrapper<content::ContentLoader> m_contentLoader;
-    std::reference_wrapper<github::GithubClient> m_githubClient;
+    RouterConfig m_config;
 };
 
 }

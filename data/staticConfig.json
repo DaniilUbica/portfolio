@@ -1,0 +1,218 @@
+{
+    "about": [
+        "Software developer from Moscow.",
+        "Mostly working on desktop and system-level software in C++.",
+        "Interested in everything dev-related — from system tooling",
+        "to games development."
+    ],
+    "experience": [
+        {
+            "args": "SIEM system development, security, backend, server",
+            "date": "2026 — present",
+            "file": "reverselab.cpp",
+            "func": "Software Developer"
+        },
+        {
+            "args": "cross-platform desktop app development, Qt/QML, media processing",
+            "date": "2023 — 2026",
+            "file": "TrueConf.cpp",
+            "func": "C++ Developer"
+        },
+        {
+            "args": "applied informatics, algorithms, OS internals, management, modeling",
+            "date": "2021 — 2025",
+            "file": "msut_stankin.cpp",
+            "func": "CS Student"
+        }
+    ],
+    "job": "Software Developer",
+    "location": "Moscow, Russia",
+    "name": "Daniil Volkov",
+    "skills": [
+        {
+            "frames": [
+                {
+                    "lvl": "MAIN",
+                    "name": "Systems programming"
+                },
+                {
+                    "lvl": "",
+                    "name": "Software architecture"
+                },
+                {
+                    "lvl": "",
+                    "name": "Cross-platform software"
+                }
+            ],
+            "id": "dev",
+            "joins": [],
+            "name": "development",
+            "state": "RUNNING"
+        },
+        {
+            "frames": [
+                {
+                    "lvl": "MAIN",
+                    "name": "C++17 / C++20"
+                },
+                {
+                    "lvl": "",
+                    "name": "Boost"
+                },
+                {
+                    "lvl": "",
+                    "name": "Multithreading"
+                },
+                {
+                    "lvl": "",
+                    "name": "Networking / sockets"
+                },
+                {
+                    "lvl": "",
+                    "name": "CMake"
+                }
+            ],
+            "id": "cpp",
+            "joins": [
+                "langs"
+            ],
+            "name": "cpp",
+            "state": "RUNNING"
+        },
+        {
+            "frames": [
+                {
+                    "lvl": "MAIN",
+                    "name": "QtQuick/Qml"
+                },
+                {
+                    "lvl": "",
+                    "name": "Thread affinity"
+                },
+                {
+                    "lvl": "",
+                    "name": "QML animations"
+                }
+            ],
+            "id": "qt",
+            "joins": [
+                "cpp"
+            ],
+            "name": "qt",
+            "state": "RUNNING"
+        },
+        {
+            "frames": [
+                {
+                    "lvl": "MAIN",
+                    "name": "Linux / MacOS / Windows"
+                },
+                {
+                    "lvl": "",
+                    "name": "Platform API"
+                },
+                {
+                    "lvl": "",
+                    "name": "DBus"
+                },
+                {
+                    "lvl": "",
+                    "name": "Process management"
+                },
+                {
+                    "lvl": "",
+                    "name": "IPC"
+                }
+            ],
+            "id": "os",
+            "joins": [
+                "dev"
+            ],
+            "name": "os",
+            "state": "RUNNING"
+        },
+        {
+            "frames": [
+                {
+                    "lvl": "MAIN",
+                    "name": "C++"
+                },
+                {
+                    "lvl": "",
+                    "name": "Objective C"
+                },
+                {
+                    "lvl": "",
+                    "name": "Qml"
+                },
+                {
+                    "lvl": "",
+                    "name": "Python"
+                }
+            ],
+            "id": "langs",
+            "joins": [
+                "dev"
+            ],
+            "name": "languages",
+            "state": "RUNNING"
+        },
+        {
+            "frames": [
+                {
+                    "lvl": "MAIN",
+                    "name": "Python"
+                },
+                {
+                    "lvl": "",
+                    "name": "Scripting / tooling"
+                }
+            ],
+            "id": "python",
+            "joins": [
+                "langs"
+            ],
+            "name": "python",
+            "state": "IDLE"
+        },
+        {
+            "frames": [
+                {
+                    "lvl": "MAIN",
+                    "name": "conan"
+                },
+                {
+                    "lvl": "",
+                    "name": "GitLab/Github CI"
+                },
+                {
+                    "lvl": "",
+                    "name": "Docker"
+                }
+            ],
+            "id": "ci",
+            "joins": [
+                "dev"
+            ],
+            "name": "CI/CD",
+            "state": "IDLE"
+        }
+    ],
+    "socials": [
+        {
+            "name": "github",
+            "ref": "https://github.com/daniilubica",
+            "value": "github.com/daniilubica"
+        },
+        {
+            "name": "email",
+            "ref": "mailto:acveloff@gmail.com",
+            "value": "acveloff@gmail.com"
+        },
+        {
+            "name": "telegram",
+            "ref": "https://t.me/daniil_ubica",
+            "value": "@daniil_ubica"
+        }
+    ]
+}

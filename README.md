@@ -4,6 +4,8 @@ Personal portfolio website with a C++20 backend and a vanilla JS frontend styled
 
 Live at [daniilubica.lol](https://daniilubica.lol)
 
+be careful... frontend is vibecoded
+
 ## Stack
 
 **Backend** — C++20, [cpp-httplib](https://github.com/yhirose/cpp-httplib), [nlohmann/json](https://github.com/nlohmann/nlohmann_json), Conan, CMake  

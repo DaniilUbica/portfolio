@@ -12,6 +12,7 @@ public:
     [[nodiscard]] std::string load() const;
 
     void reloadContent();
+    void saveContent(const nlohmann::json& content);
 
 private:
     void loadContentFromFile();

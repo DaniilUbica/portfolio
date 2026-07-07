@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin // Daniil Ubica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/header.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+
+<div id="header">
+  <div class="header-inner">
+    <span class="header-title">ADMIN_PANEL<span class="cursor"></span></span>
+    <span class="header-addr" id="admin-status">// not authenticated</span>
+    <div class="theme-switcher">
+      <span>THEME:</span>
+      <div class="theme-dot active" data-theme="matrix"   style="background:#00ff41" title="Matrix"></div>
+      <div class="theme-dot"        data-theme="amber"    style="background:#ffb000" title="Amber"></div>
+      <div class="theme-dot"        data-theme="phosphor" style="background:#33ff33" title="Phosphor"></div>
+      <div class="theme-dot"        data-theme="solarized" style="background:#859900" title="Solarized"></div>
+      <div class="theme-dot"        data-theme="dracula"  style="background:#50fa7b" title="Dracula"></div>
+      <div class="theme-dot"        data-theme="onedark"  style="background:#98c379" title="One Dark"></div>
+      <div class="theme-dot"        data-theme="gruvbox"  style="background:#b8bb26" title="Gruvbox"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LOGIN ═══ -->
+<div id="admin-login">
+  <div class="adm-box">
+    <div class="adm-box-label">&gt; authenticate</div>
+    <div class="adm-field">
+      <label class="adm-label">PASSWORD</label>
+      <input class="adm-input" id="login-password" type="password" placeholder="enter admin password" autocomplete="current-password" />
+    </div>
+    <div class="adm-error" id="login-error"></div>
+    <button class="adm-btn primary" id="login-btn">&gt; login</button>
+  </div>
+</div>
+
+<!-- ═══ EDITOR ═══ -->
+<div id="admin-editor" style="display:none">
+
+  <!-- basic info -->
+  <div class="adm-section">
+    <div class="adm-section-label">segment [ .identity ] — basic info</div>
+    <div class="adm-grid">
+      <div class="adm-field">
+        <label class="adm-label">NAME</label>
+        <input class="adm-input" id="f-name" type="text" />
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">JOB</label>
+        <input class="adm-input" id="f-job" type="text" />
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">LOCATION</label>
+        <input class="adm-input" id="f-location" type="text" />
+      </div>
+    </div>
+  </div>
+
+  <!-- about -->
+  <div class="adm-section">
+    <div class="adm-section-label">segment [ .about ] — bio lines</div>
+    <div class="adm-field">
+      <label class="adm-label">one line per array element</label>
+      <textarea class="adm-textarea" id="f-about" rows="4"></textarea>
+    </div>
+  </div>
+
+  <!-- experience -->
+  <div class="adm-section">
+    <div class="adm-section-label">segment [ .experience ] — call stack</div>
+    <div id="f-experience-list"></div>
+    <button class="adm-btn" id="exp-add-btn">&gt; add entry</button>
+  </div>
+
+  <!-- skills -->
+  <div class="adm-section">
+    <div class="adm-section-label">segment [ .stack ] — skills (raw json)</div>
+    <div class="adm-field">
+      <textarea class="adm-textarea adm-textarea-mono" id="f-skills" rows="20"></textarea>
+    </div>
+    <div class="adm-error" id="skills-error"></div>
+  </div>
+
+  <!-- socials -->
+  <div class="adm-section">
+    <div class="adm-section-label">segment [ .contact ] — socials (raw json)</div>
+    <div class="adm-field">
+      <textarea class="adm-textarea adm-textarea-mono" id="f-socials" rows="10"></textarea>
+    </div>
+  </div>
+
+  <!-- cv upload -->
+  <div class="adm-section">
+    <div class="adm-section-label">segment [ .cv ] — upload new cv</div>
+    <div class="adm-field adm-row">
+      <input class="adm-input" id="f-cv-name" type="text" readonly placeholder="no file selected" />
+      <label class="adm-btn" for="f-cv-file">&gt; choose pdf</label>
+      <input id="f-cv-file" type="file" accept=".pdf" style="display:none" />
+      <button class="adm-btn primary" id="cv-upload-btn" disabled>&gt; upload cv</button>
+    </div>
+    <div class="adm-msg" id="cv-msg"></div>
+  </div>
+
+  <!-- save -->
+  <div class="adm-actions">
+    <div class="adm-msg" id="save-msg"></div>
+    <button class="adm-btn primary large" id="save-btn">&gt; save &amp; reload</button>
+  </div>
+
+</div>
+
+<script type="module" src="js/admin.js"></script>
+</body>
+</html>

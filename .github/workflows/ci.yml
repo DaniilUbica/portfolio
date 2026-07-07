@@ -57,7 +57,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          sparse-checkout: frontend
+          sparse-checkout: |
+            frontend
+            data
           sparse-checkout-cone-mode: false
 
       - name: Download binary artifact
@@ -71,6 +73,9 @@ jobs:
       - name: Package frontend
         run: tar -czf frontend.tar.gz frontend
 
+      - name: Package data
+        run: tar -czf data.tar.gz data
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -78,3 +83,4 @@ jobs:
           files: |
             portfolio-backend-linux-x86_64.tar.gz
             frontend.tar.gz
+            data.tar.gz
